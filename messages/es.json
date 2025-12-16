@@ -1,0 +1,333 @@
+{
+    "Footer": {
+        "privacy": "Política de privacidad",
+        "terms": "Términos y condiciones",
+        "rights": "Todos los derechos reservados - Planeta Guru"
+    },
+    "SubscriptionCard": {
+        "subscription": "Suscripción"
+    },
+    "PaymentModal": {
+        "title": "Resumen de compra",
+        "gurus": "Total de Gurus por adquirir",
+        "cost": "Costo",
+        "service_charge": "Servicio",
+        "total": "Total a pagar",
+        "tyc": "Al aceptar esta compra estás aceptando los ",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+    },
+    "ConfirmPaymentModal": {
+        "title": "Estás por comprar Gurus",
+        "message": "Serás redirigido a la web de Mercado Pago para procesar tu compra",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+    },
+    "PaymentMethod": {
+        "title": "Selecciona tu forma de pago",
+        "subtitle": "Estás comprando ",
+        "credit": "Tarjeta de crédito",
+        "debit": "Tarjeta de débito",
+        "transfer": "Transferencia",
+        "mp": "MercadoPago",
+        "cash": "Oxxo"
+    },
+    "BundlesModal": {
+        "title": "Selecciona",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+    },
+    "SuccessModal": {
+        "title": "¡Compra Exitosa!",
+        "message": "En breve recibirás el código y las instrucciones de uso en tu correo electrónico.",
+        "messagehtml": "Sigue disfrutando de tu contenido favorito",
+        "button": "Aceptar",
+        "help": "Aún no he recibido mi código."
+    },
+    "ErrorModal": {
+        "title": "¡Ups!",
+        "message": "Parecce que hubo un error. ¡Vuelve a intentarlo!",
+        "button": "Aceptar"
+    },
+    "InsufficientGurusModal": {
+        "title": "¡Ups!",
+        "message": "Parece que no tienes suficientes Gurus para esta compra. Recarga tu wallet y vuelve a intentarlo.",
+        "button": "Recargar",
+        "cancel": "Cancelar"
+    },
+    "ChargeGurus": {
+        "title": "Recarga tu <strong>Guru Wallet</strong>",
+        "choose": "Elige el pack de GURUs que prefieras"
+    },
+    "CategoryWrapper": {
+        "title": "Categorías"
+    },
+    "FavoritesWrapper": {
+        "title": "Favoritos"
+    },
+    "DownloadsWrapper": {
+        "title": "Mis Juegos"
+    },
+    "AdBannerCard": {
+        "badge": "ESTRENO"
+    },
+    "MainCarouselCard": {
+        "badge": "ESTRENO",
+        "watch": "Ver producto"
+    },
+    "GameKeyRequeriments": {
+        "title": "Requisitos del sistema",
+        "min": "Mínimo",
+        "rec": "Recomendado"
+    },
+    "ShareModal": {
+        "title": "Comparte este juego",
+        "subtitle": "¡Mira lo que estoy jugando en Planeta Guru!"
+    },
+    "AvailableCountries": {
+        "title": "Países disponibles"
+    },
+    "BuyModal": {
+        "title": "Resumen de tu compra",
+        "current": "Saldo actual",
+        "purchase": "Tu compra",
+        "remaining": "Saldo restante",
+        "warning": "Estás a punto de comprar un producto exclusivo para ",
+        "button": "Confirmar",
+        "cancel": "Cancelar"
+    },
+    "BuyButton": {
+        "text": "Adquirir",
+        "play": "Jugar"
+    },
+    "Exclusive": {
+        "available": "Disponible para {country} y más países",
+        "not_available": "No disponible para {country}",
+        "country_not_found": "No disponible para tu país"
+    },
+    "ChargeButton": {
+        "text": "Recargar"
+    },
+    "ProfileCard": {
+        "text": "¡Bienvenido <strong>{username}</strong>!"
+    },
+    "TransactionsCard": {
+        "caption": "Lista de las últimas transacciones",
+        "date": "Fecha",
+        "description": "Descripción",
+        "amount": "Monto"
+    },
+    "WalletCard": {
+        "title": "Saldo Guru Wallet"
+    },
+    "SearchWrapper": {
+        "title": "Búsqueda"
+    },
+    "ChangeLocaleForm": {
+        "country": "País",
+        "countries": "Países",
+        "language": "Lenguaje",
+        "languages": "Lenguajes",
+        "spanish": "Español",
+        "english": "Inglés",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "errorMessage": "Error intentando cambiar de idioma",
+        "loadingCountries": "Cargando países...",
+        "loadingLanguages": "Cargando lenguajes...",
+        "selectCountry": "Selecciona tu país",
+        "selectLanguage": "Selecciona tu idioma"
+    },
+    "LoginButton": {
+        "text": "Ingresar"
+    },
+    "SignUpButton": {
+        "text": "Regístrate"
+    },
+    "FavoritesMenuButton": {
+        "favorites": "Favoritos",
+        "downloads": "Mis Juegos",
+        "categories": "Categorías"
+    },
+    "HamburgerMenuButton": {
+        "help": "Ayuda",
+        "faqs": "Preguntas frecuentes"
+    },
+    "ProfileMenuButton": {
+        "myprofile": "Mi perfil",
+        "myaccount": "Mi cuenta",
+        "myuser": "Mi usuario",
+        "logout": "Cerrar sesión"
+    },
+    "SearchMenuButton": {
+        "search": "Buscar",
+        "categories": "Categorías"
+    },
+    "WalletMenuButton": {
+        "myguru": "Mi Guru Wallet",
+        "charge": "Recargar"
+    },
+    "ChangeLocaleModal": {
+        "title": "Elige tu país e idioma"
+    },
+    "NotLoggedInModal": {
+        "title": "¡Inicia sesión o regístrate para divertirte al máximo!"
+    },
+    "WatchMoreCard": {
+        "watch": "Ver más"
+    },
+    "WatchMoreButton": {
+        "watch": "Ver todos"
+    },
+    "RelatedContent": {
+        "title": "Contenido relacionado"
+    },
+    "About": {
+        "title": "Acerca de"
+    },
+    "ProductInfoTable": {
+        "title": "Título",
+        "categories": "Categorías",
+        "classification": "Clasificación",
+        "developer": "Desarrollador",
+        "editor": "Editor",
+        "language": "Idioma",
+        "language": "Idioma",
+        "release": "Fecha de lanzamiento"
+    },
+    "ProductLanguageTable": {
+        "title": "Idioma",
+        "interface": "Interfaz",
+        "voices": "Voces",
+        "subtitles": "Subtítulos",
+        "spanish": "Español",
+        "english": "Inglés"
+    },
+    "FAQ": {
+        "mainTitle": "Preguntas frecuentes",
+
+        "firstTitle": "¿Qué es Planeta Guru Juegos?",
+        "firstDescription": "Planeta Guru es un portal de videojuegos destinado para que los usuarios puedan disfrutar del contenido tanto en su teléfono móvil como en su computadora.",
+
+        "secondTitle": "¿Qué supone la suscripción a Planeta Gurú?",
+        "secondDescription": "La suscripción a Planeta Guru te brinda acceso ilimitado al catálogo de Cloud Gaming de la plataforma. Se puede adquirir mediante suscripción diaria o semanal. El costo de la suscripción se refleja en la factura o saldo de telefonía celular del usuario y varía según el país y compañía telefónica. La suscripción está disponible para usuarios de Telcel México y Vodacom Sudáfrica.",
+
+        "thirdTitle": "¿Cómo puedo cancelar mi suscripción a Planeta Guru?",
+        "thirdDescription": "México: Para los usuarios de Telcel México, pueden enviar un mensaje de texto con la palabra SALIR al número 99910 desde su Telcel, o llamar sin costo desde un teléfono fijo o con costo de llamada local desde su Telcel al 1-800-0772623. El horario de atención es de lunes a viernes de 9:00 a 18:00. Sudáfrica: Para darse de baja, los usuarios podrán cancelar su suscripción a través de su perfil, marcando *135*997#, o llamando a Vodacom (se aplican cargos por llamadas locales).",
+
+        "fourthTitle": "¿Cómo puedo acceder a Planeta Guru sin pagar una suscripción?",
+        "fourthDescription": "Para acceder y disfrutar de los servicios que brinda la plataforma puedes comprar packs de GURUs y de esta forma adquirir nuestros juegos y productos como gamekeys.",
+
+        "fifthTitle": "¿Qué son los GURUs y cómo los obtengo?",
+        "fifthDescription": "Los GURUs son nuestra propia moneda, la cual se acumula en tu wallet dentro de la plataforma y te permite realizar transacciones dentro de la misma como por ejemplo comprar un juego o una gamekey. Puedes comprar tu pack de GURUs iniciando sesión en tu cuenta de Planeta Guru y yendo a “Mi Guru Wallet” a la sección “Recargar” eligiendo el pack que más se adecúe a tus preferencias. *Exceptuando Sudáfrica.",
+
+        "sixthTitle": "¿Cuáles son las formas de pago?",
+        "sixthDescription": "Puedes pagar con tarjeta de crédito, débito o transferencia a través de la plataforma Mercado Pago. *Excepto Sudáfrica.",
+
+        "seventhTitle": "¿Por qué no puedo adquirir una gift card o una suscripción?",
+        "seventhDescription": "Es posible que en este momento no contemos con el stock del producto que quieres adquirir. Actualmente las gift cards y las suscripciones están disponibles solamente para méxico.",
+
+        "eighthTitle": "¿Cómo canjear mi código una vez que lo recibo en mi mail?",
+        "eighthDescription": "Una vez recibas el código debes ir a la plataforma que corresponda y seguir los pasos que indique la misma para canjearlo. Cada plataforma tiene sus propios pasos a seguir. Recuerda que el código es único y no debes perder ni compartir esa información con otras personas.",
+
+        "ninthTitle": "Compré un Guru Box y no he recibido mi código ¿Qué hago?",
+        "ninthDescription": "Lo primero que debes hacer es ir a la sección de spam de tu correo y asegurarte de que no haya llegado allí por error. Si no lo encuentras puedes contactarnos a clientes@planeta.guru y te ayudaremos.",
+
+        "tenthTitle": "¿Quién es el responsable de la prestación del servicio y qué condiciones aplican?",
+        "tenthDescription": "El responsable de la prestación del servicio es ITBAF S.A. de C.V. Las condiciones de contratación del servicio pueden variar según el país y las compañías telefónicas. Al suscribirse, se entiende que el usuario ha leído, entendido y aceptado los Términos y Condiciones del servicio de Planeta Guru Juegos.",
+
+        "eleventhTitle": "Si tienen alguna duda o problema puedes contactarnos a clientes@planeta.guru y te ayudaremos."
+    },
+    "Help": {
+        "title": "¡Bienvenido a Planeta Guru!",
+        "subtitle": "¡Regístrate y juega <strong>GRATIS</strong>! <strong>Todos los juegos Cloud están a 0 GURUs</strong> por tiempo limitado. ¡Compártelo con tus amigos y jueguen gratis juntos desde el primer día!",
+        "button": "Continuar",
+        "text1": {
+            "title": "1. ¿Qué es Planeta Guru?",
+            "subtitle": "Es una plataforma digital donde puedes encontrar:",
+            "bullets": [
+            "Cloud Games para jugar sin descargas.",
+            "Suscripciones, Gift Cards y Gamekeys de tus plataformas favoritas.",
+            "Un catálogo en constante crecimiento."
+            ],
+            "note": ""
+        },
+        "text2": {
+            "title": "2. Recarga tus GURUs",
+            "subtitle": "",
+            "bullets": [
+            "Los GURUs son nuestra moneda oficial y te permiten adquirir cualquier producto de la plataforma.",
+            "¿Cómo recargar?",
+            "1. Elige el pack de GURUs que más te convenga.",
+            "2. Selecciona tu método de pago preferido.",
+            "3. ¡Listo! Los GURUs se acreditan en tu wallet al instante."
+            ],
+            "note": ""
+        },
+        "text3": {
+            "title": "3. Canjea y disfruta",
+            "subtitle": "",
+            "bullets": [
+            "Jugar Cloud Games sin publicidad ni límites.",
+            "Comprar suscripciones, Gift Cards y Gamekeys*.",
+            "Disfrutar de nuevos productos que sumamos cada semana."
+            ],
+            "note": "* Gift Cards y suscripciones válidas sólo para México"
+        }
+    },
+    "PrivacyText": {
+        "title": "Política de privacidad",
+        "subheading": "Planeta Guru",
+        "content": [
+            "La presente Política de Privacidad determina los términos en que Itbaf S.A. respeta la privacidad de sus visitantes en línea y de los clientes de sus productos y servicios, y cumple con las leyes aplicables para la protección de su privacidad. La empresa está comprometida con la seguridad de los datos de sus usuarios, siendo pasible que las Políticas de Privacidad pueden cambiar con el tiempo o ser actualizadas por lo que se recomienda revisar ésta página para asegurarse que esté de acuerdo con las modificaciones.",
+            "1. Definiciones",
+            "Datos personales: cualquier información que pueda identificarlo a usted como individuo (“Información de identificación personal”) o que pueda relacionarse de manera indirecta mediante su vinculación con la Información de identificación personal. ITBAF también procesa datos anónimos, colectivos o no, con el fin de analizar y elaborar estadísticas relacionadas con los hábitos, patrones de uso y datos demográficos de los clientes en grupo o de forma individual. Dichos datos anónimos no permiten la identificación de los clientes a los que se refieren. Itbaf puede compartir datos anónimos, agregados o no, con terceros.",
+            "2. Información recolectada",
+            "2.1 Itbaf recopilará su dirección de correo electrónico y país de residencia cuando quiera configurarse una cuenta. Deberá seleccionar un nombre de usuario y una contraseña. Es necesario aportar esta información para registrar una Cuenta de usuario. Durante la configuración de su cuenta, a esta se le asigna automáticamente un número que posteriormente se utiliza para hacer referencia a su cuenta de usuario sin exponer directamente Información de identificación personal sobre usted. No es necesario informar el nombre real.",
+            "Asimismo, se pueden recopilar datos personales cuando usted los proporcione de manera explícita o los envíe al comunicarse con terceros, por ejemplo, en los chats o foros de la comunidad Planeta Guru, o al proporcionar comentarios u otro tipo de contenido generado por el usuario. Ejemplos no limitativos: la información que usted publique, comente o siga en cualquiera de nuestros Contenidos y servicios; la información enviada a través del chat; la información que usted proporcione al solicitar información o asistencia de nosotros, o adquirir Contenidos y servicios de nosotros, incluida la información necesaria para tramitar sus pedidos con el correspondiente comerciante de pago o, en el caso de bienes físicos, los proveedores del envío; la información que usted nos proporcione cuando participe en competiciones, concursos y torneos, o cuando responda a encuestas, por ejemplo, su información de contacto.",
+            "3.2 Se recopila información a través de su interacción general con los sitios web y los Contenidos y servicios ofrecidos por Itbaf. Ejemplo enunciativo, no limitativo: información del navegador y del dispositivo, los datos recopilados a través de interacciones electrónicas automatizadas y los datos de uso de la aplicación.",
+            "3.3 Uso de Juegos y otras Suscripciones: se recopilan, almacenan y utilizan diversa información acerca de su actividad en nuestros Contenidos y servicios. En “Datos relacionados con los contenidos” se incluye su identificador de Planeta Guru, así como lo que se conoce normalmente como “estadísticas de juego”. Por estadísticas de juego nos referimos a información acerca de sus preferencias de juegos, los avances en los juegos, el tiempo de juego y la información sobre el dispositivo que esté utilizando, incluidos el sistema operativo que esté utilizando, la configuración del dispositivo, los identificadores de los dispositivos únicos y los datos de bloqueo.",
+            "3.4 Este sitio web utiliza Google Analytics, un servicio analítico web prestado por Google, Inc. (“Google”). Google Analytics utiliza “cookies”, que son archivos de texto ubicados en los equipos de los visitantes, para ayudar a los operadores del sitio web a analizar el uso que hacen los visitantes de dicho sitio. Generalmente Google recibe y almacena la información que genera la cookie acerca del uso de los visitantes del sitio web en los servidores de Estados Unidos. En casos excepcionales se transmitirán direcciones IP completas a un servidor de Google en EE. UU. para acortarse allí.",
+            "3.5 A fin de detectar infracciones, se recopilan ciertos datos necesarios para detectar, investigar y prevenir fraudes, trampas y otras infracciones del Acuerdo de suscriptor de Planeta Guru y de las leyes aplicables. Estos datos se usan solo para esos fines y se almacenan el mínimo tiempo necesario, salvo que haya un caso legal pendiente.",
+            "4. Se procesarán datos en los siguientes casos:",
+            "a) cuando sea necesario para el desempeño de nuestro acuerdo con usted y la entrega de Contenidos y Servicios asociados;",
+            "b) cuando sea necesario para cumplir con obligaciones legales (p. ej., retención fiscal);",
+            "c) cuando sea necesario para intereses legítimos de Itbaf o terceros, salvo que sus derechos los anulen;",
+            "d) cuando usted haya dado su consentimiento.",
+            "5. Se almacenará su información el tiempo necesario para los fines de recolección o por exigencia legal. Después se borrará, bloqueará o anonimizará según la ley.",
+            "6. Acceso a datos:",
+            "6.1 Itbaf y sus filiales podrán compartir sus datos entre sí y utilizarlos para los fines indicados. En caso de venta o fusión, podrán transferirse según la ley.",
+            "6.2 También podrán compartirse datos con proveedores externos de atención al cliente, solo en la medida necesaria para ese servicio.",
+            "6.3 De acuerdo con estándares de Internet, cierta información (IP, IDs de contenido) puede compartirse con nuestra CDN y servidores de juegos, para entregar contenido según ubicación.",
+            "6.4 Itbaf podría divulgar Datos personales para cumplir órdenes judiciales o normativas.",
+            "7. Información de contacto",
+            "Puede ponerse en contacto con el responsable de protección de datos de Itbaf en: soporte@itbaf.com"
+        ]
+    },
+    "Subscriptions": {
+      "title": "Estado de la suscripción",
+      "active": "Activa",
+      "inactive": "Inactiva",
+      "expired": "Ha expirado",
+      "cancel": "Cancelar Suscripción"
+    },
+    "EditUser": {
+        "title": "Mi usuario"
+    },
+    "CompleteSubscription": {
+        "title": "Crea tu cuenta",
+        "description": "para continuar en Planeta Guru",
+        "firstName": "Nombre",
+        "firstNamePlaceholder": "Ingrese su nombre",
+        "lastName": "Apellido",
+        "lastNamePlaceholder": "Ingrese su apellido",
+        "userName": "Nombre de usuario",
+        "userNamePlaceholder": "Ingrese su nombre de usuario",
+        "email": "Correo electrónico",
+        "emailPlaceholder": "Ingrese su dirección de correo electrónico",
+        "button": "Continuar",
+        "optional": "Opcional",
+        "genericError": "Se produjo un error al completar la suscripción. Por favor, inténtalo de nuevo más tarde.",
+        "userError": "El nombre de usuario ya está en uso. Por favor, elige otro."
+    }
+}

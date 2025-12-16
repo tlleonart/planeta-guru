@@ -1,0 +1,332 @@
+{
+    "Footer": {
+        "privacy": "Privacy policy",
+        "terms": "Terms and conditions",
+        "rights": "All rights reserved - Planeta Guru"
+    },
+    "SubscriptionCard": {
+        "subscription": "Subscription"
+    },
+    "PaymentModal": {
+        "title": "Charge excerpt",
+        "gurus": "Total amount of Gurus to acquire",
+        "cost": "Cost",
+        "service_charge": "Service",
+        "total": "Total payment",
+        "tyc": "By clicking on 'Confirm' you accept the ",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "ConfirmPaymentModal": {
+        "title": "You're about to purchase Gurus",
+        "message": "You will be redirected to Mercado Pago to complete your purchase.",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "PaymentMethod": {
+        "title": "Select your payment method",
+        "subtitle": "You're buying ",
+        "credit": "Credit Card",
+        "debit": "Debit Card",
+        "transfer": "Transfer",
+        "mp": "MercadoPago",
+        "cash": "Oxxo"
+    },
+    "BundlesModal": {
+        "title": "Select",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "SuccessModal": {
+        "title": "Purchase Successful!",
+        "message": "You will shortly receive the code and usage instructions in your email.",
+        "messagehtml": "Continue enjoying your favorite content",
+        "button": "Continue",
+        "help": "I haven’t received my code yet."
+    },
+    "ErrorModal": {
+        "title": "Oops!",
+        "message": "It looks like there was an error. Please try again!",
+        "button": "Accept"
+    },
+    "InsufficientGurusModal": {
+        "title": "Ups!",
+        "message": "It seems that you don't have enough GURUs to make this purchase. Recharge your wallet and try again.",
+        "button": "Recharge",
+        "cancel": "Cancel"
+    },
+    "ChargeGurus": {
+        "title": "Recharge your <strong>Guru Wallet</strong>",
+        "choose": "Choose the GURU pack you like"
+    },
+    "CategoryWrapper": {
+        "title": "Categories"
+    },
+    "FavoritesWrapper": {
+        "title": "Favorites"
+    },
+    "DownloadsWrapper": {
+        "title": "My Games"
+    },
+    "AdBannerCard": {
+        "badge": "NEW"
+    },
+    "MainCarouselCard": {
+        "badge": "NEW",
+        "watch": "See product"
+    },
+    "GameKeyRequeriments": {
+        "title": "System requeriments",
+        "min": "Minimum",
+        "rec": "Recomended"
+    },
+    "ShareModal": {
+        "title": "Share this game",
+        "subtitle": "Look what I'm playing at Planeta Guru!"
+    },
+    "AvailableCountries": {
+        "title": "Available Countries"
+    },
+    "BuyModal": {
+        "title": "Your purchase summary",
+        "current": "Current balance",
+        "purchase": "Your purchase",
+        "remaining": "Remaining balance",
+        "warning": "You are about to purchase an exclusive product for ",
+        "button": "Confirm",
+        "cancel": "Cancel"
+    },
+    "BuyButton": {
+        "text": "Acquire",
+        "play": "Play"
+    },
+    "Exclusive": {
+        "available": "available for for {country} and more countries",
+        "not_available": "Not available for {country}",
+        "country_not_found": "Not available your country"
+    },
+    "ChargeButton": {
+        "text": "Charge"
+    },
+    "ProfileCard": {
+        "text": "Welcome <strong>{username}</strong>!"
+    },
+    "TransactionsCard": {
+        "caption": "List of last transactions",
+        "date": "Date",
+        "description": "Description",
+        "amount": "Amount"
+    },
+    "WalletCard": {
+        "title": "Guru Wallet balance"
+    },
+    "SearchWrapper": {
+        "title": "Search"
+    },
+    "ChangeLocaleForm": {
+        "country": "Country",
+        "countries": "Countries",
+        "language": "Language",
+        "languages": "Languages",
+        "spanish": "Spanish",
+        "english": "English",
+        "save": "Save",
+        "cancel": "Cancel",
+        "errorMessage": "Error trying to change locale",
+        "loadingCountries": "Loading countries...",
+        "loadingLanguages": "Loading languages...",
+        "selectCountry": "Select your country",
+        "selectLanguage": "Select your language"
+    },
+    "LoginButton": {
+        "text": "Log in"
+    },
+    "SignUpButton": {
+        "text": "Sign Up"
+    },
+    "FavoritesMenuButton": {
+        "favorites": "Favorites",
+        "downloads": "My Games",
+        "categories": "Categories"
+    },
+    "HamburgerMenuButton": {
+        "help": "Help",
+        "faqs": "FAQs"
+    },
+    "ProfileMenuButton": {
+        "myprofile": "My profile",
+        "myaccount": "My account",
+        "myuser": "My user",
+        "logout": "Log out"
+    },
+    "SearchMenuButton": {
+        "search": "Search",
+        "categories": "Categories"
+    },
+    "WalletMenuButton": {
+        "myguru": "My Guru Wallet",
+        "charge": "Charge"
+    },
+    "ChangeLocaleModal": {
+        "title": "Choose your country and language"
+    },
+    "NotLoggedInModal": {
+        "title": "Sign up or log in to have fun!"
+    },
+    "WatchMoreCard": {
+        "watch": "See more"
+    },
+    "WatchMoreButton": {
+        "watch": "See more"
+    },
+    "RelatedContent": {
+        "title": "Related Content"
+    },
+    "About": {
+        "title": "About"
+    },
+    "ProductInfoTable": {
+        "title": "Title",
+        "categories": "Categories",
+        "classification": "Classification",
+        "developer": "Developer",
+        "editor": "Editor",
+        "language": "Language",
+        "release": "Release Date"
+    },
+    "ProductLanguageTable": {
+        "title": "Language",
+        "interface": "Interface",
+        "voices": "Voices",
+        "subtitles": "Subtitles",
+        "spanish": "Spanish",
+        "english": "English"
+    },
+    "FAQ": {
+        "mainTitle": "Frequently Asked Questions",
+
+        "firstTitle": "What is Planeta Guru Games?",
+        "firstDescription": "Planeta Guru is a video game portal designed for users to enjoy content both on their mobile phones and on their computers.",
+
+        "secondTitle": "What does a subscription to Planeta Guru entail?",
+        "secondDescription": "A subscription to Planeta Guru gives you unlimited access to the platform's Cloud Gaming catalog. It can be purchased on a daily or weekly basis. The cost of the subscription is reflected in the user's cell phone bill or balance and varies by country and carrier. The subscription is available for Telcel Mexico and Vodacom South Africa users.",
+
+        "thirdTitle": "How can I cancel my Planeta Guru subscription?",
+        "thirdDescription": "Mexico: For Telcel Mexico users, you can send a text message with the word SALIR to 99910 from your Telcel, or call toll-free from a landline or local call from your Telcel to 1-800-0772623. Hours of operation are Monday through Friday from 9:00 a.m. to 6:00 p.m. South Africa: Users may cancel their subscription via their profile by dialing *135*997#, or by calling Vodacom (local call charges apply).",
+
+        "fourthTitle": "How can I access Planeta Guru without paying for a subscription?",
+        "fourthDescription": "To access and enjoy the services provided by the platform, you can buy packs of GURUs and thus acquire our games and products, such as game keys.",
+
+        "fifthTitle": "What are GURUs, and how do I get them?",
+        "fifthDescription": "GURUs are our own currency, which accumulates in your wallet within the platform and allows you to make transactions such as buying a game or a game key. You can buy a pack of GURUs by logging into your Planeta Guru account, going to “My Guru Wallet” in the “Reload” section, and choosing the pack that best suits your preferences. *Except South Africa.",
+
+        "sixthTitle": "What are the payment methods?",
+        "sixthDescription": "You can pay by credit card, debit card, or bank transfer through the Mercado Pago platform. *Except South Africa.",
+
+        "seventhTitle": "Why can't I purchase a gift card or subscription?",
+        "seventhDescription": "It is possible that we do not have the product you want to purchase in stock at the moment. Currently, gift cards and subscriptions are only available in Mexico.",
+
+        "eighthTitle": "How do I redeem my code once I receive it in my email?",
+        "eighthDescription": "Once you receive the code, go to the corresponding platform and follow the steps indicated there to redeem it. Each platform has its own procedure. Remember that the code is unique and you should not lose or share it with others.",
+
+        "ninthTitle": "I bought a Guru Box and have not received my code. What should I do?",
+        "ninthDescription": "First, check your email’s spam folder to ensure it didn’t end up there by mistake. If you still can’t find it, contact us at clientes@planeta.guru and we will help you.",
+
+        "tenthTitle": "Who is responsible for the provision of the service and what conditions apply?",
+        "tenthDescription": "ITBAF S.A. de C.V. is responsible for providing the service. Service terms and conditions may vary by country and carrier. By subscribing, you acknowledge that you have read, understood, and accepted the Planeta Guru Juegos Terms and Conditions.",
+
+        "eleventhTitle": "If you have any questions or problems you can contact us at clientes@planeta.guru and we will help you."
+    },
+    "Help": {
+        "title": "¡Welcome to Planeta Guru!",
+        "subtitle": "Sign up and play <strong>FOR FREE</strong>! <strong>All Cloud games cost 0 GURUs</strong> for a limited time. Share it with your friends and enjoy playing together for free from day one!",
+        "button": "Continue",
+        "text1": {
+            "title": "1. What is Planeta Guru?",
+            "subtitle": "It’s a digital platform where you can find:",
+            "bullets": [
+            "Cloud Games to play without downloads.",
+            "Subscriptions, Gift Cards, and Gamekeys from your favorite platforms.",
+            "A constantly growing catalog."
+            ],
+            "note": ""
+        },
+        "text2": {
+            "title": "2. Top up your GURUs",
+            "subtitle": "",
+            "bullets": [
+            "GURUs are our official currency and allow you to purchase any product on the platform.",
+            "How to top up?",
+            "1. Choose the GURU pack that suits you best.",
+            "2. Select your preferred payment method.",
+            "3. Done! Your GURUs are instantly credited to your wallet."
+            ],
+            "note": ""
+        },
+        "text3": {
+            "title": "3. Redeem and enjoy",
+            "subtitle": "",
+            "bullets": [
+            "Play Cloud Games with no ads or limits.",
+            "Buy subscriptions, Gift Cards, and Gamekeys*.",
+            "Enjoy new products we add every week."
+            ],
+            "note": "* Gift Cards and subscriptions only valid in Mexico"
+        }
+    },
+    "PrivacyText": {
+        "title": "Privacy Policy",
+        "subheading": "Planeta Guru",
+        "content": [
+            "This Privacy Policy sets out how Itbaf S.A. respects the privacy of its online visitors and customers, and complies with applicable privacy laws. The company is committed to data security, and this policy may change—please review it periodically for updates.",
+            "1. Definitions",
+            "Personal data: any information that identifies you as an individual (“Personally Identifiable Information”) or relates indirectly to it. Itbaf also processes anonymous or aggregated data for usage statistics, which cannot identify individuals. Such data may be shared with third parties.",
+            "2. Information Collected",
+            "2.1 We collect your email and country when you create an account, along with a username and password. Your account is assigned a number to avoid exposing personal details. You don’t need to provide your real name.",
+            "We may also collect personal data you explicitly provide in chats, forums, feedback, orders, contests, or surveys, including contact info and any content you post.",
+            "3.2 We collect data from your interactions with our websites and services, such as browser/device info, automated interaction data, and app usage statistics.",
+            "3.3 For Games and Subscriptions we gather usage data (“game statistics”), including preferences, progress, play time, OS, device config, unique IDs, and crash reports.",
+            "3.4 We use Google Analytics, which places cookies to track site usage. Google stores this data on U.S. servers and may truncate full IPs there.",
+            "3.5 To detect fraud or other violations of our Subscriber Agreement or laws, we collect and retain certain data only as long as necessary or until any legal case is resolved.",
+            "4. Personal Data Processing:",
+            "a) To perform our user agreement and deliver services;",
+            "b) To comply with legal obligations (e.g., tax retention laws);",
+            "c) For legitimate interests of Itbaf or third parties, unless overridden by your rights;",
+            "d) With your consent.",
+            "5. We retain data as long as needed for the collection purposes or by law, then delete, block, or anonymize it.",
+            "6. Data Access:",
+            "6.1 Itbaf and affiliates may share your data internally, and transfer it in mergers or sales per law.",
+            "6.2 External customer‑service providers may receive your data only as needed for support.",
+            "6.3 Under internet standards, we may share IPs and content‑IDs with CDNs and game‑server providers based on location.",
+            "6.4 We may disclose personal data to comply with judicial orders or regulations.",
+            "7. Contact Information",
+            "You can contact Itbaf’s data protection officer at: soporte@itbaf.com"
+        ]    
+    },
+    "Subscriptions": {
+      "title": "Subscription Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "expired": "Expired",
+      "cancel": "Cancel Subscription"
+    },
+    "EditUser": {
+        "title": "My User"
+    },
+    "CompleteSubscription": {
+        "title": "Create your account",
+        "description": "Welcome! Please fill in the details to get started.",
+        "firstName": "First name",
+        "firstNamePlaceholder": "First name",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Last name",
+        "userName": "Username",
+        "userNamePlaceholder": "Enter your username",
+        "email": "Email address",
+        "emailPlaceholder": "Enter your email address",
+        "button": "Continue",
+        "optional": "Optional",
+        "genericError": "An error occurred while completing the subscription. Please try again later.",
+        "userError": "The username is already in use. Please choose another."
+    }
+}
