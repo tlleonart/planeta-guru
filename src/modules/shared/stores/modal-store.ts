@@ -2,7 +2,7 @@
 
 import { createStore } from 'zustand';
 
-export type ModalType = 'Authenticate' | 'EditUser' |null;
+export type ModalType = 'Payment' | 'Confirmation' | 'UserForm' | 'Error' | 'Authenticate' | 'EditUser' | null;
 
 export type ModalState = {
   type: ModalType;

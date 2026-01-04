@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import { FC, useState } from "react";
 
 interface CompleteSubscriptionFormProps {
-    externalId: string
+  externalId: string
 }
 
 export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ externalId }) => {
@@ -22,8 +22,8 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
   const [lastName, setLastName] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState<string | null>(null);  
-  
+  const [error, setError] = useState<string | null>(null);
+
   const signInAndRedirect = async (userId: string) => {
     const resp = await fetch('/api/users/token', {
       method: 'POST',
@@ -45,7 +45,6 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    console.log('Submitting form with:', { firstName, lastName, userName, email, externalId });
     try {
       const existsRes = await fetch('/api/users/exists', {
         method: 'POST',
@@ -73,7 +72,7 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName, lastName, userName, email, externalId }),
       });
-      
+
       if (!resp.ok) {
         const { message } = await resp.json();
         throw new Error(message || 'Error en registro');
@@ -98,8 +97,8 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
 
           <div className="flex flex-col gap-2">
             <Label className="flex justify-between text-[0.8125rem] font-semibold">
-                {t("firstName")} 
-                <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
+              {t("firstName")}
+              <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
             </Label>
             <Input
               type="text"
@@ -112,8 +111,8 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
 
           <div className="flex flex-col gap-2">
             <Label className="flex justify-between text-[0.8125rem] font-semibold">
-                {t("lastName")} 
-                <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
+              {t("lastName")}
+              <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
             </Label>
             <Input
               type="text"
@@ -175,7 +174,7 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
         </Button>
 
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-      </form>  
+      </form>
     </div>
   );
 }

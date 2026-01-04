@@ -94,6 +94,7 @@ export interface CategoryMedia {
 export interface Category {
   id: number;
   categoryLanguages: CategoryLanguage[]
+  categoryMedia: CategoryMedia[]
 }
 
 export interface SpecLanguage {

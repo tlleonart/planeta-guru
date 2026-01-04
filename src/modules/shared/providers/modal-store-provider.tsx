@@ -21,7 +21,7 @@ export const ModalStoreProvider = ({ children }: ModalStoreProviderProps) => {
 
     return (
         <ModalStoreContext.Provider value={storeRef.current}>
-            { children }
+            {children}
         </ModalStoreContext.Provider>
     )
 }

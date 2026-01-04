@@ -3,7 +3,7 @@ import type { FC } from "react"
 import { BaseModal } from "./base-modal"
 import { LoginButton } from "../ui/login-button"
 
- interface AuthenticateModalProps {
+interface AuthenticateModalProps {
     onClose: () => void
 }
 

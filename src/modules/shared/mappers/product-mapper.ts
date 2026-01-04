@@ -121,7 +121,7 @@ export function mapDiscount(api: DiscountApiModel): Discount {
     id: api.id,
     percentage: api.percentage,
     bundleId: api.bundle_id,
-  } 
+  }
 }
 
 export function mapBundleAvailability(
@@ -175,6 +175,7 @@ export function mapCategory(api: CategoryApiModel): Category {
   return {
     id: api.id,
     categoryLanguages: api.category_languages.map(mapCategoryLanguage),
+    categoryMedia: api.category_media?.map(mapCategoryMedia),
   };
 }
 
@@ -223,7 +224,7 @@ export function mapProduct(api: ProductApiModel): Product {
     isFavorite: api.is_favorite,
     favoriteId: api.favorite_id,
     rating: api.rating,
-    media: api.media.map(mapMedia),
+    media: api.media?.map(mapMedia),
     categories: api.categories.map(mapCategory),
     specs: api.specs?.map(mapSpec),
     tags: api.tags,
@@ -245,6 +246,18 @@ export function mapBundleWithProduct(
 export function mapFeaturedProduct(
   api: FeaturedProductApiModel
 ): FeaturedProduct {
+  if (!api.product.media) {
+    const combo = api as any
+
+    return {
+      id: combo.id,
+      productId: combo.product_id,
+      sectionId: combo.section_id,
+      position: combo.position,
+      product: mapProduct({ media: combo.media, descriptions: combo.descriptions, ...combo.product }),
+    }
+  }
+
   return {
     id: api.id,
     productId: api.product_id,

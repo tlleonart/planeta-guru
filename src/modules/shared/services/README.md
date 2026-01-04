@@ -180,7 +180,7 @@ export interface SortParams {
 
 ### 1.2 Crear archivo de tipos del dominio
 
-Ubicación: `src/types/[domain].types.ts`
+Ubicación: `src/types/[domain]-types.ts`
 
 ```typescript
 // src/types/order.types.ts

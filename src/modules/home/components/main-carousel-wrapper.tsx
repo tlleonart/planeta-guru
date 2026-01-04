@@ -12,12 +12,12 @@ export const MainCarouselSkeleton: FC = () => {
 };
 
 export const MainCarouselWrapper: FC = async () => {
-    const featuredProducts = await api.product.getFeatured()
+  const featuredProducts = await api.product.getFeatured()
 
-    return (
-        <Suspense fallback={<MainCarouselSkeleton/>}>
-            <MainCarousel products={featuredProducts.items}/>
-        </Suspense>
+  return (
+    <Suspense fallback={<MainCarouselSkeleton />}>
+      <MainCarousel products={featuredProducts.items} />
+    </Suspense>
 
-    )
+  )
 }

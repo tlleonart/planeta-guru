@@ -2,12 +2,12 @@ import type { ApiPagination, Pagination } from "../types/api-types";
 
 export function mapPagination(api: ApiPagination): Pagination {
   return {
-    total: api.total,
-    perPage: api.per_page,
-    currentPage: api.current_page,
-    lastPage: api.last_page,
-    from: api.from,
-    to: api.to,
+    total: api?.total ?? 0,
+    perPage: api?.per_page ?? 0,
+    currentPage: api?.current_page ?? 0,
+    lastPage: api?.last_page ?? 0,
+    from: api?.from ?? 0,
+    to: api?.to ?? 0,
   };
 }
 

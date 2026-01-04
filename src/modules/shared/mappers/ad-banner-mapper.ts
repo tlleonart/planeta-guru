@@ -13,6 +13,5 @@ export function adBannerMapper(api: AdApiModel): Ad {
 }
 
 export function mapAdBannerResponse(response: AdApiResponse): Ad {
-    console.log("RESPONSE", response)
     return adBannerMapper(response.featured_products[0])
 }

@@ -10,6 +10,13 @@ export interface TRPCContext {
   clerkAuth: Awaited<ReturnType<typeof auth>>;
 }
 
+const defaultRequestContext: RequestContext = {
+  selectedCountry: 'MX',
+  selectedLanguage: 'es',
+  authToken: undefined,
+  msisdn: undefined,
+};
+
 const getCacheAuthData = cache(async () => {
   const [cookieStore, clerkAuth] = await Promise.all([cookies(), auth()]);
 
@@ -28,10 +35,10 @@ export async function createTRPCContext(opts: {
   const { cookieStore, authToken, clerkAuth } = await getCacheAuthData();
 
   const requestContext: RequestContext = {
-    selectedCountry: cookieStore.get("selectedCountry")?.value,
-    selectedLanguage: cookieStore.get("selectedLanguage")?.value,
-    authToken: authToken || undefined,
-    msisdn: cookieStore.get("msisdn")?.value,
+    selectedCountry: cookieStore.get("selectedCountry")?.value ?? defaultRequestContext.selectedCountry,
+    selectedLanguage: cookieStore.get("selectedLanguage")?.value ?? defaultRequestContext.selectedLanguage,
+    authToken: authToken || defaultRequestContext.authToken,
+    msisdn: cookieStore.get("msisdn")?.value ?? defaultRequestContext.msisdn,
   };
 
   return {

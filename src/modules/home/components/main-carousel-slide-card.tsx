@@ -7,7 +7,7 @@ import { Button } from "@/modules/shared/components/ui/button"
 
 interface MainCarouselSlideCardProps {
     name: string
-    description: string
+    description?: string
     slug: string
     type: string
 }
@@ -17,7 +17,7 @@ export const MainCarouselSlideCard: FC<MainCarouselSlideCardProps> = ({ name, de
 
     return (
         <div
-        className="absolute top-32 left-8 md:top-50 md:left-44 md:right-auto md:w-1/3 lg:w-1/3 xl:w-1/4 
+            className="absolute top-32 left-8 md:top-50 md:left-44 md:right-auto md:w-1/3 lg:w-1/3 xl:w-1/4 
                         w-5/6 mt-4 md:mt-0  bg-main/20 p-4 sm:p-6 md:p-3 lg:p-6 backdrop-blur-lg md:h-60 "
         >
             <div className="flex flex-col md:h-full md:justify-between ">
@@ -37,5 +37,5 @@ export const MainCarouselSlideCard: FC<MainCarouselSlideCardProps> = ({ name, de
                 </div>
             </div>
         </div>
-    )       
+    )
 }

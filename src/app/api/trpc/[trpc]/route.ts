@@ -1,5 +1,3 @@
-// src/app/api/trpc/[trpc]/route.ts
-
 import { appRouter } from "@/app/server/routers";
 import { createTRPCContext } from "@/app/server/trpc/context";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
@@ -20,11 +18,11 @@ const handler = (req: NextRequest) =>
     onError:
       process.env.NODE_ENV === "development"
         ? ({ path, error }) => {
-            console.error(
-              `tRPC failed on ${path ?? "<unknown-path>"}:`,
-              error.message
-            );
-          }
+          console.error(
+            `tRPC failed on ${path ?? "<unknown-path>"}:`,
+            error.message
+          );
+        }
         : undefined,
   });
 

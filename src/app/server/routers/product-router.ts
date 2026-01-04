@@ -1,11 +1,7 @@
 import { z } from 'zod';
 import { router, publicProcedure, protectedProcedure } from '../trpc/trpc';
 import { productService } from '@/modules/shared/services/product-service';
-
-const paginationSchema = z.object({
-  page: z.number().min(1).default(1),
-  perPage: z.number().min(1).max(100).default(20),
-});
+import { paginationSchema } from '@/modules/shared/lib/utils';
 
 const getProductsSchema = paginationSchema.extend({
   search: z.string().max(100).optional(),

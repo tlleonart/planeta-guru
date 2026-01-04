@@ -15,6 +15,7 @@ import type {
   GetUserProductsApiResponse,
   GetFavoritesApiResponse,
 } from '@/modules/shared/types/product-types';
+
 import {
   mapProduct,
   mapFeaturedProduct,
@@ -87,7 +88,7 @@ class ProductService extends BaseService {
       `${this.basePath}/featured-products`,
       {
         params: {
-          section_id: params.sectionId ?? 1,
+          section_id: 1,
         },
         context,
       }
