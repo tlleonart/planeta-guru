@@ -114,8 +114,17 @@ export const PaymentSummaryModal: FC<PaymentSummaryModalProps> = ({
             </Button>
           </div>
           <div className="flex flex-col">
-            <p className="text-xs md:text-sm py-1">{t("tyc")}</p>
-            {/* TODO: Agregar TermsAndConditions component cuando esté disponible */}
+            <p className="text-xs md:text-sm py-1">
+              {t("tyc")}
+              <a
+                href="https://storage.googleapis.com/planeta-guru-assets-bucket/terms/planetaguru/tyc-es.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline hover:text-primary/80"
+              >
+                {t("terms_link")}
+              </a>
+            </p>
           </div>
         </div>
       </DialogContent>
