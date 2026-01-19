@@ -1,8 +1,11 @@
 "use client";
 
-import { vodacomGetServiceElegibilityAction, vodacomWapSubscribeAction } from "@/app/actions";
+import { type FC, useState, useTransition } from "react";
+import {
+  vodacomGetServiceElegibilityAction,
+  vodacomWapSubscribeAction,
+} from "@/app/actions";
 import { Button } from "@/modules/shared/components/ui/button";
-import { FC, useState, useTransition } from "react";
 
 interface WapSubscriptionButtonProps {
   msisdn: string;
@@ -26,7 +29,7 @@ export const VodacomWapSubscriptionButton: FC<WapSubscriptionButtonProps> = ({
             (response) => {
               setSuccess(response.message);
               document.location.href = response.url;
-            }
+            },
           );
         })
         .catch((error) => setError(error.message));

@@ -1,8 +1,15 @@
-import { GetLegalsListApiResponse, GetLegalsUrlApiResponse, Legal, LegalApiModel, LegalsUrls, LegalType } from "../types/legals-types";
+import type {
+  GetLegalsListApiResponse,
+  GetLegalsUrlApiResponse,
+  Legal,
+  LegalApiModel,
+  LegalsUrls,
+  LegalType,
+} from "../types/legals-types";
 
 function mapLegalType(type: string): LegalType {
-  const validTypes: LegalType[] = ['terms', 'privacy', 'cookies', 'other'];
-  return validTypes.includes(type as LegalType) ? (type as LegalType) : 'other';
+  const validTypes: LegalType[] = ["terms", "privacy", "cookies", "other"];
+  return validTypes.includes(type as LegalType) ? (type as LegalType) : "other";
 }
 
 export function mapLegal(api: LegalApiModel): Legal {
@@ -17,11 +24,15 @@ export function mapLegal(api: LegalApiModel): Legal {
   };
 }
 
-export function mapLegalsListResponse(response: GetLegalsListApiResponse): Legal[] {
+export function mapLegalsListResponse(
+  response: GetLegalsListApiResponse,
+): Legal[] {
   return response.legals.map(mapLegal);
 }
 
-export function mapLegalsUrlResponse(response: GetLegalsUrlApiResponse): LegalsUrls {
+export function mapLegalsUrlResponse(
+  response: GetLegalsUrlApiResponse,
+): LegalsUrls {
   return {
     termsUrl: response.terms_url ?? response.url ?? null,
     privacyUrl: response.privacy_url ?? null,
@@ -29,11 +40,11 @@ export function mapLegalsUrlResponse(response: GetLegalsUrlApiResponse): LegalsU
 }
 
 export function extractTermsUrl(legals: Legal[]): string | null {
-  const terms = legals.find((legal) => legal.type === 'terms');
+  const terms = legals.find((legal) => legal.type === "terms");
   return terms?.terms_url ?? null;
 }
 
 export function extractPrivacyUrl(legals: Legal[]): string | null {
-  const privacy = legals.find((legal) => legal.type === 'privacy');
-  return privacy?.terms_url ?? null;
+  const privacy = legals.find((legal) => legal.type === "privacy");
+  return privacy?.content ?? null;
 }

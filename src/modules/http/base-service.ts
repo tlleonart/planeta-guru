@@ -26,7 +26,7 @@ export abstract class BaseService {
 
   protected buildSortParams(params: {
     orderBy?: string;
-    order?: 'asc' | 'desc';
+    order?: "asc" | "desc";
   }): Record<string, string | undefined> {
     return {
       order_by: params.orderBy,
@@ -38,7 +38,7 @@ export abstract class BaseService {
     page?: number;
     perPage?: number;
     orderBy?: string;
-    order?: 'asc' | 'desc';
+    order?: "asc" | "desc";
   }): Record<string, string | number | undefined> {
     return {
       ...this.buildPaginationParams(params),

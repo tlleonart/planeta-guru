@@ -1,22 +1,24 @@
-import { getTranslations } from "next-intl/server"
-import type { FC } from "react"
-import { BaseModal } from "./base-modal"
-import { LoginButton } from "../ui/login-button"
+"use client";
+
+import { useTranslations } from "next-intl";
+import type { FC } from "react";
+import { LoginButton } from "../ui/login-button";
+import { BaseModal } from "./base-modal";
 
 interface AuthenticateModalProps {
-    onClose: () => void
+  onClose: () => void;
 }
 
-const AuthenticateModal: FC<AuthenticateModalProps> = async ({ onClose }) => {
-    const t = await getTranslations("NotLoggedInModal")
+const AuthenticateModal: FC<AuthenticateModalProps> = ({ onClose }) => {
+  const t = useTranslations("NotLoggedInModal");
 
-    return (
-        <BaseModal onClose={onClose} title={t('title')}>
-            <div className="flex flex-row w-full gap-4 justify-center">
-                <LoginButton />
-            </div>
-        </BaseModal>
-    )
-}
+  return (
+    <BaseModal onClose={onClose} title={t("title")}>
+      <div className="flex flex-row w-full gap-4 justify-center">
+        <LoginButton />
+      </div>
+    </BaseModal>
+  );
+};
 
-export default AuthenticateModal
+export default AuthenticateModal;

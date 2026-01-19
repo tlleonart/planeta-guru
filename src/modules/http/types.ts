@@ -34,7 +34,7 @@ export class HttpClientError extends Error {
     message: string,
     public readonly status: number,
     public readonly code?: string,
-    public readonly details?: unknown
+    public readonly details?: unknown,
   ) {
     super(message);
     this.name = "HttpClientError";

@@ -1,13 +1,13 @@
 "use client";
 
-import { FC } from "react";
-import { useMedia } from "react-use";
 import Image from "next/image";
-import logo from "@/public/logo.svg";
-import { VodacomWebSubscriptionButton } from "../components/web-subscription-button";
-import { VodacomWapSubscriptionButton } from "../components/wap-subscription-button";
 import Link from "next/link";
-import hero from "@/public/landings/vodacom/hero.png"
+import type { FC } from "react";
+import { useMedia } from "react-use";
+import hero from "@/public/landings/vodacom/hero.png";
+import logo from "@/public/logo.png";
+import { VodacomWapSubscriptionButton } from "../components/wap-subscription-button";
+import { VodacomWebSubscriptionButton } from "../components/web-subscription-button";
 
 interface VodacomLandingPageProps {
   msisdn?: string;

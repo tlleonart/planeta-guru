@@ -1,7 +1,8 @@
-import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+import { ModalRenderer } from "@/modules/shared/components/modals/modal-renderer";
 
 type Props = {
   children: React.ReactNode;
@@ -24,6 +25,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider locale={locale}>
       {children}
+      <ModalRenderer />
     </NextIntlClientProvider>
   );
 }

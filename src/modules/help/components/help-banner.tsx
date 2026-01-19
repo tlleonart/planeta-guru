@@ -1,10 +1,10 @@
-import { FC } from "react";
-import bannerMobile from "@/public/help-page/banner-mobile.webp"
-import bannerDesktop from "@/public/help-page/banner-desktop.webp"
 import Image from "next/image";
+import type { FC } from "react";
+import bannerDesktop from "@/public/help-page/banner-desktop.webp";
+import bannerMobile from "@/public/help-page/banner-mobile.webp";
 
 export const HelpBanner: FC = () => {
-    return (
+  return (
     <div className="flex justify-center items-center ">
       <div className="w-full h-[50dvh] md:h-[60vh] relative rounded-none">
         <div className="w-full h-full relative">
@@ -22,4 +22,4 @@ export const HelpBanner: FC = () => {
       </div>
     </div>
   );
-}
+};

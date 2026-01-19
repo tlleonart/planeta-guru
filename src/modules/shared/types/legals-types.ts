@@ -8,7 +8,7 @@ export interface Legal {
   updatedAt: string;
 }
 
-export type LegalType = 'terms' | 'privacy' | 'cookies' | 'other';
+export type LegalType = "terms" | "privacy" | "cookies" | "other";
 
 export interface LegalApiModel {
   id: number;
@@ -30,7 +30,9 @@ export interface GetLegalsListApiResponse {
   legals: LegalApiModel[];
 }
 
-export type GetLegalsApiResponse = GetLegalsUrlApiResponse | GetLegalsListApiResponse;
+export type GetLegalsApiResponse =
+  | GetLegalsUrlApiResponse
+  | GetLegalsListApiResponse;
 
 export interface LegalsUrls {
   termsUrl: string | null;

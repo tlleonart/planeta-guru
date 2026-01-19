@@ -1,0 +1,55 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker build \
+          --build-arg NEXT_PUBLIC_BASE_API_URL=$$NEXT_PUBLIC_BASE_API_URL \
+          --build-arg PLATFORM_KEY=$$PLATFORM_KEY \
+          --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
+          --build-arg CLERK_SECRET_KEY=$$CLERK_SECRET_KEY \
+          -t ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_TAG} \
+          .
+    secretEnv: ['PLATFORM_KEY', 'NEXT_PUBLIC_BASE_API_URL', 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY', 'CLERK_SECRET_KEY']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_TAG}'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--set-secrets'
+      - 'PLATFORM_KEY=pgj-platform-key:latest,NEXT_PUBLIC_BASE_API_URL=pgj-next-public-base-api-url:latest,NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pgj-next-public-clerk-publishable-key:latest,CLERK_SECRET_KEY=pgj-clerk-secret-key:latest'
+
+images:
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE_NAME}:${_TAG}'
+
+substitutions:
+  _REGION: us-central1
+  _REPOSITORY: planeta-guru-repo
+  _SERVICE_NAME: planeta-guru
+  _TAG: latest
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/pgj-platform-key/versions/latest
+      env: 'PLATFORM_KEY'
+    - versionName: projects/$PROJECT_ID/secrets/pgj-next-public-base-api-url/versions/latest
+      env: 'NEXT_PUBLIC_BASE_API_URL'
+    - versionName: projects/$PROJECT_ID/secrets/pgj-next-public-clerk-publishable-key/versions/latest
+      env: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY'
+    - versionName: projects/$PROJECT_ID/secrets/pgj-clerk-secret-key/versions/latest
+      env: 'CLERK_SECRET_KEY'

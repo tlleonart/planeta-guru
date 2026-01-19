@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { MenuHamburgerButton } from "./menu-hamburger-button";
 import { MenuFavoritesButton } from "./menu-favorites-button";
+import { MenuHamburgerButton } from "./menu-hamburger-button";
+import { MenuProfileButton } from "./menu-profile-button";
 import { MenuSearchButton } from "./menu-search-button";
 import { MenuWalletButton } from "./menu-wallet-button";
-import { MenuProfileButton } from "./menu-profile-button";
 
 export const MenuComponent: FC = () => {
   return (

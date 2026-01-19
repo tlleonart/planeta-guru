@@ -1,11 +1,13 @@
-import { ChargeGurusPage } from "@/modules/charge-gurus/charge-gurus-page"
+import { ChargeGurusPage } from "@/modules/charge-gurus/charge-gurus-page";
 
-type Props = {
-    searchParams: Promise<{ origin?: string }>
+interface ChargeGurusRouteProps {
+  searchParams: Promise<{ origin?: string }>;
 }
 
-export async function ChargeGurus({ searchParams }: Props) {
-    const { origin } = await searchParams
+export default async function ChargeGurusRoute({
+  searchParams,
+}: ChargeGurusRouteProps) {
+  const { origin } = await searchParams;
 
-    return <ChargeGurusPage origin={origin} />
+  return <ChargeGurusPage origin={origin} />;
 }

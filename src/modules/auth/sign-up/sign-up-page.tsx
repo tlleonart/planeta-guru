@@ -1,17 +1,16 @@
 import { SignUp } from "@clerk/nextjs";
-import { FC } from "react"
+import type { FC } from "react";
+import { validateRedirectUrl } from "@/modules/shared/lib/validate-redirect";
 
 interface SignUpPageProps {
-    locale: string,
-    redirectUrl?: string
+  locale: string;
+  redirectUrl?: string;
 }
 
 export const SignUpPage: FC<SignUpPageProps> = ({ locale, redirectUrl }) => {
-    const finalRedirectUrl = redirectUrl
-        ? `/${locale}${redirectUrl}`
-        : `/${locale}/help`
-    
-    return (
+  const finalRedirectUrl = validateRedirectUrl(redirectUrl, locale, "/help");
+
+  return (
     <main className="flex flex-col items-center justify-center w-full h-full pt-20 mb-16">
       <style jsx global>{`
         .cl-internal-1dauvpw {
@@ -34,4 +33,4 @@ export const SignUpPage: FC<SignUpPageProps> = ({ locale, redirectUrl }) => {
       />
     </main>
   );
-}
+};

@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { CategoriesWrapper } from "./components/categories-wrapper";
 
 export const CategoriesPage: FC = () => {
-    return <CategoriesWrapper />
-}
+  return <CategoriesWrapper />;
+};

@@ -1,37 +1,42 @@
-"use client"
+"use client";
 
+import { createContext, type ReactNode, useContext, useRef } from "react";
 import { useStore } from "zustand";
-import { createContext, type ReactNode, useContext, useRef } from "react"
-import { type ModalStore, createModalStore } from "@/modules/shared/stores/modal-store";
+import {
+  createModalStore,
+  type ModalStore,
+} from "@/modules/shared/stores/modal-store";
 
-export type ModalStoreApi = ReturnType<typeof createModalStore>
+export type ModalStoreApi = ReturnType<typeof createModalStore>;
 
-export const ModalStoreContext = createContext<ModalStoreApi | undefined>(undefined)
+export const ModalStoreContext = createContext<ModalStoreApi | undefined>(
+  undefined,
+);
 
 export interface ModalStoreProviderProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
 export const ModalStoreProvider = ({ children }: ModalStoreProviderProps) => {
-    const storeRef = useRef<ModalStoreApi | null>(null)
+  const storeRef = useRef<ModalStoreApi | null>(null);
 
-    if (storeRef.current === null) {
-        storeRef.current = createModalStore()
-    }
+  if (storeRef.current === null) {
+    storeRef.current = createModalStore();
+  }
 
-    return (
-        <ModalStoreContext.Provider value={storeRef.current}>
-            {children}
-        </ModalStoreContext.Provider>
-    )
-}
+  return (
+    <ModalStoreContext.Provider value={storeRef.current}>
+      {children}
+    </ModalStoreContext.Provider>
+  );
+};
 
 export const useModalStore = <T,>(selector: (store: ModalStore) => T): T => {
-    const modalStoreContext = useContext(ModalStoreContext)
+  const modalStoreContext = useContext(ModalStoreContext);
 
-    if (!modalStoreContext) {
-        throw new Error("useModalStore debe usarse dentro de ModalStoreProvider")
-    }
+  if (!modalStoreContext) {
+    throw new Error("useModalStore debe usarse dentro de ModalStoreProvider");
+  }
 
-    return useStore(modalStoreContext, selector)
-}
+  return useStore(modalStoreContext, selector);
+};

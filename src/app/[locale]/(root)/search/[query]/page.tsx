@@ -5,9 +5,7 @@ type Props = {
 };
 
 export default async function Search({ params }: Props) {
-    const { query } = await params;
+  const { query } = await params;
 
-    return (
-        <SearchPage query={query} />
-    )
+  return <SearchPage query={query} />;
 }

@@ -12,7 +12,7 @@ export function getHttpClient(): HttpClient {
 
     if (!baseUrl || !platformKey) {
       throw new Error(
-        "Faltan las variables de entorno requeridas NEXT_PUBLIC_BASE_API_URL o PLATFORM_KEY"
+        "Faltan las variables de entorno requeridas NEXT_PUBLIC_BASE_API_URL o PLATFORM_KEY",
       );
     }
 

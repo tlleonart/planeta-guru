@@ -1,5 +1,5 @@
-import { router, publicProcedure } from '../trpc/trpc';
-import { legalsService } from '@/modules/shared/services/legals-service';
+import { legalsService } from "@/modules/shared/services/legals-service";
+import { publicProcedure, router } from "../trpc/trpc";
 
 export const legalsRouter = router({
   getLegalsUrls: publicProcedure.query(async ({ ctx }) => {

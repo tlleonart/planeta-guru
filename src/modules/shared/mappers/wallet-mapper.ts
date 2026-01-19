@@ -1,4 +1,12 @@
-import { GetWalletApiResponse, Wallet, WalletApiModel, WalletIncome, WalletIncomeApiModel, WalletOutcome, WalletOutcomeApiModel } from "../types/wallet-types";
+import type {
+  GetWalletApiResponse,
+  Wallet,
+  WalletApiModel,
+  WalletIncome,
+  WalletIncomeApiModel,
+  WalletOutcome,
+  WalletOutcomeApiModel,
+} from "../types/wallet-types";
 
 export function mapWallet(api: WalletApiModel): Wallet {
   return {

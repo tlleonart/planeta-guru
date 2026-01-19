@@ -1,5 +1,5 @@
-import { adBannerService } from '@/modules/shared/services/ad-banner-service';
-import { router, publicProcedure } from '../trpc/trpc';
+import { adBannerService } from "@/modules/shared/services/ad-banner-service";
+import { publicProcedure, router } from "../trpc/trpc";
 
 export const adBannerRouter = router({
   getAdBanner: publicProcedure.query(async ({ ctx }) => {

@@ -1,15 +1,15 @@
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { FC } from "react";
-import logo from "@/public/logo.svg";
+import type { FC } from "react";
+import { Link } from "@/i18n/navigation";
+import logo from "@/public/logo.png";
 
 export const HeaderLogo: FC = () => {
   return (
-    <Link href="/" className="flex items-center w-1/3 sm:w-1/4 md:w-1/5">
+    <Link href="/" className="flex items-center shrink-0">
       <Image
-        src={logo || "/placeholder.svg"}
+        src={logo}
         alt="Planeta Guru logo"
-        className="cursor-pointer h-8 sm:h-10 md:h-10 lg:h-10 w-auto object-contain"
+        className="cursor-pointer h-9 md:h-10 w-auto object-contain"
         priority
       />
     </Link>

@@ -1,15 +1,27 @@
-import { mapIncome, mapOutcome, mapWalletResponse } from "../mappers/wallet-mapper";
-import type { GetWalletApiResponse, GetWalletHistoryParams, GetWalletIncomesApiResponse, GetWalletOutcomesApiResponse, PaginatedIncomes, PaginatedOutcomes, Wallet } from "../types/wallet-types";
-import { BaseService } from "@/modules/http/base-service";
 import type { RequestContext } from "@/modules/http";
+import { BaseService } from "@/modules/http/base-service";
+import {
+  mapIncome,
+  mapOutcome,
+  mapWalletResponse,
+} from "../mappers/wallet-mapper";
+import type {
+  GetWalletApiResponse,
+  GetWalletHistoryParams,
+  GetWalletIncomesApiResponse,
+  GetWalletOutcomesApiResponse,
+  PaginatedIncomes,
+  PaginatedOutcomes,
+  Wallet,
+} from "../types/wallet-types";
 
 class WalletService extends BaseService {
-  private readonly basePath = '/wallets';
+  private readonly basePath = "/wallets";
 
   async getWallet(context: RequestContext): Promise<Wallet> {
     const response = await this.http.get<GetWalletApiResponse>(
       `${this.basePath}/wallet`,
-      { context }
+      { context },
     );
 
     return mapWalletResponse(response.data);
@@ -22,7 +34,7 @@ class WalletService extends BaseService {
 
   async getOutcomes(
     params: GetWalletHistoryParams = {},
-    context: RequestContext
+    context: RequestContext,
   ): Promise<PaginatedOutcomes> {
     const response = await this.http.get<GetWalletOutcomesApiResponse>(
       `${this.basePath}/outcomes`,
@@ -33,7 +45,7 @@ class WalletService extends BaseService {
           to_date: params.toDate,
         },
         context,
-      }
+      },
     );
 
     return {
@@ -44,7 +56,7 @@ class WalletService extends BaseService {
 
   async getIncomes(
     params: GetWalletHistoryParams = {},
-    context: RequestContext
+    context: RequestContext,
   ): Promise<PaginatedIncomes> {
     const response = await this.http.get<GetWalletIncomesApiResponse>(
       `${this.basePath}/incomes`,
@@ -55,7 +67,7 @@ class WalletService extends BaseService {
           to_date: params.toDate,
         },
         context,
-      }
+      },
     );
 
     return {

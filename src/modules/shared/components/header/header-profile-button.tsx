@@ -1,12 +1,12 @@
-/** biome-ignore-all lint/a11y/useSemanticElements: <explanation> */
+/** biome-ignore-all lint/a11y/useSemanticElements: Custom dropdown trigger requires div wrapper */
 
-import { type FC, Suspense } from "react";
 import Image from "next/image";
+import { type FC, Suspense } from "react";
+import { api } from "@/app/server/server";
 import { Link } from "@/i18n/navigation";
 import guruCoinIcon from "@/public/guru-coin.svg";
-import { api } from "@/app/server/server";
-import { Button } from "../ui/button";
 import { cn } from "../../lib/utils";
+import { Button } from "../ui/button";
 
 const HeaderProfileButtonSkeleton: FC = () => (
   <div
@@ -47,7 +47,7 @@ async function HeaderProfileButtonContent() {
           "text-xs sm:text-sm md:text-base",
           "bg-primary text-primary-foreground",
           "shadow-xs hover:bg-primary/90 transition-colors",
-          !hasBalance && "opacity-75"
+          !hasBalance && "opacity-75",
         )}
       >
         <Link

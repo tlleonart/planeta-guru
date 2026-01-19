@@ -1,8 +1,8 @@
 "use client";
 
+import { type FC, useState, useTransition } from "react";
 import { vodacomWebSubscribeAction } from "@/app/actions";
 import { Button } from "@/modules/shared/components/ui/button";
-import { FC, useState, useTransition } from "react";
 
 export const VodacomWebSubscriptionButton: FC = () => {
   const [isPending, startTransition] = useTransition();

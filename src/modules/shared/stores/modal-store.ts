@@ -1,8 +1,18 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
+/** biome-ignore-all lint/suspicious/noExplicitAny: Modal store requires dynamic props typing */
 
-import { createStore } from 'zustand';
+import { createStore } from "zustand";
 
-export type ModalType = 'Payment' | 'Confirmation' | 'UserForm' | 'Error' | 'Authenticate' | 'EditUser' | null;
+export type ModalType =
+  | "Payment"
+  | "Confirmation"
+  | "UserForm"
+  | "Error"
+  | "Authenticate"
+  | "EditUser"
+  | "InsufficientGurus"
+  | "BuyBundle"
+  | "ComboSummary"
+  | null;
 
 export type ModalState = {
   type: ModalType;
@@ -23,7 +33,9 @@ const defaultInitialState: ModalState = {
   isOpen: false,
 };
 
-export const createModalStore = (initState: ModalState = defaultInitialState) => {
+export const createModalStore = (
+  initState: ModalState = defaultInitialState,
+) => {
   return createStore<ModalStore>((set) => ({
     ...initState,
     openModal: (type, props = {}) => set({ type, props, isOpen: true }),

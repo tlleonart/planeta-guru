@@ -1,4 +1,10 @@
-import type { ApiMessage, ApiPagination, PaginatedResponse, PaginationParams, SortParams } from "./api-types";
+import type {
+  ApiMessage,
+  ApiPagination,
+  PaginatedResponse,
+  PaginationParams,
+  SortParams,
+} from "./api-types";
 
 export interface MediaType {
   id: number;
@@ -14,7 +20,7 @@ export interface Media {
   url: string;
   description: string;
   mediaTypeId: number;
-  mediaType: MediaType;
+  mediaType?: MediaType;
 }
 
 export interface Description {
@@ -70,19 +76,22 @@ export interface Bundle {
   price: number;
   priceWithDiscount: number;
   priceWithSopDiscount: number;
+  priceInCurrency: number;
+  finalPriceInCurrency: number;
+  currency: string;
   discount?: Discount;
   sopDiscount?: Discount;
   regionId: number;
-  region: Region;
+  region?: Region;
   storeId?: number;
   store?: Store;
   externalProviderId: number | null;
-  availableIntoSelectedCountry: BundleAvailability;
+  availableIntoSelectedCountry?: BundleAvailability;
 }
 
 export interface CategoryLanguage {
-  categoryId: number
-  name: string
+  categoryId: number;
+  name: string;
 }
 
 export interface CategoryMedia {
@@ -93,8 +102,9 @@ export interface CategoryMedia {
 
 export interface Category {
   id: number;
-  categoryLanguages: CategoryLanguage[]
-  categoryMedia: CategoryMedia[]
+  categoryLanguages: CategoryLanguage[];
+  categoryMedia?: CategoryMedia[];
+  parentId?: number | null;
 }
 
 export interface SpecLanguage {
@@ -119,8 +129,8 @@ export interface Spec {
   name: string;
   specTypeId: number;
   specId: number;
-  spec: SpecDetail;
-  specValue: SpecValue;
+  spec?: SpecDetail;
+  specValue?: SpecValue;
   specValueId: number;
 }
 
@@ -137,7 +147,7 @@ export interface Product {
   categories: Category[];
   specs: Spec[];
   tags: [];
-  productType: ProductType;
+  productType?: ProductType;
   descriptions?: Description[];
   bundles: Bundle[];
 }
@@ -240,6 +250,9 @@ export interface BundleApiModel {
   price: number;
   price_with_discount: number;
   price_with_sop_discount: number;
+  price_in_currency: number;
+  final_price_in_currency: number;
+  currency: string;
   discount: DiscountApiModel;
   sop_discount: DiscountApiModel;
   region_id: number;
@@ -251,8 +264,8 @@ export interface BundleApiModel {
 }
 
 export interface CategoryLanguageApiModel {
-  category_id: number
-  name: string
+  category_id: number;
+  name: string;
 }
 
 export interface CategoryMediaApiModel {
@@ -262,12 +275,12 @@ export interface CategoryMediaApiModel {
 }
 
 export interface CategoryApiModel {
-  id: number
-  name: string
-  category_languages: CategoryLanguageApiModel[]
-  category_media: CategoryMediaApiModel[]
-  laravel_through_key: number
-  parent_id: number
+  id: number;
+  name: string;
+  category_languages: CategoryLanguageApiModel[];
+  category_media: CategoryMediaApiModel[];
+  laravel_through_key: number;
+  parent_id: number;
 }
 
 export interface SpecLanguageApiModel {
@@ -298,21 +311,21 @@ export interface SpecApiModel {
 }
 
 export interface ProductApiModel {
-  id: number
-  name: string
-  slug: string
-  product_type_id: number
-  is_owner: boolean
-  is_favorite: boolean
-  favorite_id: number
-  rating: number
-  media: MediaApiModel[]
-  categories: CategoryApiModel[]
-  specs: SpecApiModel[]
-  tags: []
-  product_type: ProductTypeApiModel
-  descriptions: DescriptionApiModel[]
-  bundles: BundleApiModel[]
+  id: number;
+  name: string;
+  slug: string;
+  product_type_id: number;
+  is_owner: boolean;
+  is_favorite: boolean;
+  favorite_id: number;
+  rating: number;
+  media: MediaApiModel[];
+  categories: CategoryApiModel[];
+  specs: SpecApiModel[];
+  tags: [];
+  product_type: ProductTypeApiModel;
+  descriptions: DescriptionApiModel[];
+  bundles: BundleApiModel[];
 }
 
 export interface FeaturedProductApiModel {
@@ -322,6 +335,24 @@ export interface FeaturedProductApiModel {
   position: number;
   product: ProductApiModel;
 }
+
+/**
+ * Alternative API response shape where media/descriptions are at root level
+ * Used when the API returns featured products with flattened structure
+ */
+export interface FeaturedProductApiModelFlattened {
+  id: number;
+  product_id: number;
+  section_id: number;
+  position: number;
+  media: MediaApiModel[];
+  descriptions: DescriptionApiModel[];
+  product: Omit<ProductApiModel, "media" | "descriptions">;
+}
+
+export type FeaturedProductApiModelUnion =
+  | FeaturedProductApiModel
+  | FeaturedProductApiModelFlattened;
 
 export interface BundleWithProductApiModel extends BundleApiModel {
   product: ProductApiModel;
@@ -346,7 +377,7 @@ export interface FavoriteApiModel {
 export interface GetProductsApiResponse {
   products: ProductApiModel[];
   pagination: ApiPagination;
-  message: ApiMessage
+  message: ApiMessage;
 }
 
 export interface GetProductBySlugApiResponse {
@@ -364,11 +395,11 @@ export interface GetFeaturedProductsApiResponse {
 export interface GetCategoriesApiResponse {
   categories: CategoryApiModel[];
   pagination: ApiPagination;
-  message: ApiMessage
+  message: ApiMessage;
 }
 
 export interface GetUserProductsApiResponse {
-  'user-products': UserProductApiModel[];
+  "user-products": UserProductApiModel[];
   pagination: ApiPagination;
 }
 
@@ -376,6 +407,24 @@ export interface GetFavoritesApiResponse {
   favorites: FavoriteApiModel[];
   pagination: ApiPagination;
   message: ApiMessage;
+}
+
+export interface AddFavoriteApiResponse {
+  favorite: AddedFavoriteApiModel;
+  pagination: ApiPagination;
+  message: ApiMessage;
+}
+
+export interface AddedFavoriteApiModel {
+  user_id: string;
+  product_id: number;
+  id: number;
+}
+
+export interface AddedFavorite {
+  userId: string;
+  productId: number;
+  id: number;
 }
 
 export interface GetProductsParams extends PaginationParams {
@@ -388,7 +437,7 @@ export interface GetFeaturedProductsParams {
 }
 
 export interface GetUserProductsParams extends PaginationParams, SortParams {
-  orderBy?: 'created_at' | 'updated_at';
+  orderBy?: "created_at" | "updated_at";
 }
 
 export interface GetDownloadsApiResponse {

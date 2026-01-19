@@ -14,7 +14,7 @@ export function mapPagination(api: ApiPagination): Pagination {
 export function mapPaginatedResponse<TApi, TDomain>(
   items: TApi[],
   pagination: ApiPagination,
-  mapItem: (item: TApi) => TDomain
+  mapItem: (item: TApi) => TDomain,
 ): {
   items: TDomain[];
   pagination: Pagination;
@@ -27,7 +27,7 @@ export function mapPaginatedResponse<TApi, TDomain>(
 
 export function mapPaginatedResponsePassthrough<T>(
   items: T[],
-  pagination: ApiPagination
+  pagination: ApiPagination,
 ): {
   items: T[];
   pagination: Pagination;

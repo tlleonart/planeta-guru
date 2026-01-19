@@ -1,20 +1,16 @@
 import { SignIn } from "@clerk/nextjs";
-import { FC } from "react"
+import type { FC } from "react";
+import { validateRedirectUrl } from "@/modules/shared/lib/validate-redirect";
 
 interface SignInPageProps {
-    locale: string,
-    redirectUrl?: string
+  locale: string;
+  redirectUrl?: string;
 }
 
-export const SignInPage: FC<SignInPageProps> = ({
-    locale,
-    redirectUrl
-}) => {
-    const finalRedirectUrl = redirectUrl
-        ? `/${locale}${redirectUrl}`
-        : `/${locale}/help`
-    
-    return (
+export const SignInPage: FC<SignInPageProps> = ({ locale, redirectUrl }) => {
+  const finalRedirectUrl = validateRedirectUrl(redirectUrl, locale, "/help");
+
+  return (
     <main className="flex flex-col items-center justify-center w-full h-full pt-20">
       <style jsx global>{`
         .cl-internal-1dauvpw {
@@ -37,4 +33,4 @@ export const SignInPage: FC<SignInPageProps> = ({
       />
     </main>
   );
-}
+};

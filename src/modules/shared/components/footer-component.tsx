@@ -1,11 +1,11 @@
 // src/components/footer/footer.tsx
 
-import { type FC } from "react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import type { FC } from "react";
+import { api } from "@/app/server/server";
 import { Link } from "@/i18n/navigation";
 import nexusLogo from "@/public/footer/nexus-logo.svg";
-import { api } from "@/app/server/server";
 
 export const FooterComponent: FC = async () => {
   const t = await getTranslations("Footer");
@@ -13,7 +13,8 @@ export const FooterComponent: FC = async () => {
   let termsUrl = "/terms";
 
   try {
-    termsUrl = await api.legals.getLegals();
+    const legalsUrls = await api.legals.getLegalsUrls();
+    termsUrl = legalsUrls.termsUrl ?? "/terms";
   } catch {}
 
   return (

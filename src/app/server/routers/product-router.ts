@@ -1,7 +1,7 @@
-import { z } from 'zod';
-import { router, publicProcedure, protectedProcedure } from '../trpc/trpc';
-import { productService } from '@/modules/shared/services/product-service';
-import { paginationSchema } from '@/modules/shared/lib/utils';
+import { z } from "zod";
+import { paginationSchema } from "@/modules/shared/lib/utils";
+import { productService } from "@/modules/shared/services/product-service";
+import { protectedProcedure, publicProcedure, router } from "../trpc/trpc";
 
 const getProductsSchema = paginationSchema.extend({
   search: z.string().max(100).optional(),
@@ -9,8 +9,8 @@ const getProductsSchema = paginationSchema.extend({
 });
 
 const getUserProductsSchema = paginationSchema.extend({
-  orderBy: z.enum(['created_at', 'updated_at']).default('created_at'),
-  order: z.enum(['asc', 'desc']).default('desc'),
+  orderBy: z.enum(["created_at", "updated_at"]).default("created_at"),
+  order: z.enum(["asc", "desc"]).default("desc"),
 });
 
 export const productRouter = router({
@@ -26,14 +26,14 @@ export const productRouter = router({
         categoryId: z.number().positive(),
         page: z.number().min(1).default(1),
         perPage: z.number().min(1).max(100).default(20),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const { categoryId, ...params } = input;
       return productService.getProductsByCategory(
         categoryId,
         params,
-        ctx.requestContext
+        ctx.requestContext,
       );
     }),
 
@@ -43,7 +43,7 @@ export const productRouter = router({
         query: z.string().min(1).max(100),
         page: z.number().min(1).default(1),
         perPage: z.number().min(1).max(100).default(20),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const { query, ...params } = input;
@@ -59,7 +59,10 @@ export const productRouter = router({
   getFeatured: publicProcedure
     .input(z.object({ sectionId: z.number().positive().optional() }).optional())
     .query(async ({ input, ctx }) => {
-      return productService.getFeaturedProducts(input ?? {}, ctx.requestContext);
+      return productService.getFeaturedProducts(
+        input ?? {},
+        ctx.requestContext,
+      );
     }),
 
   getCategories: publicProcedure.query(async ({ ctx }) => {
@@ -81,6 +84,19 @@ export const productRouter = router({
   getFavorites: protectedProcedure.query(async ({ ctx }) => {
     return productService.getFavorites(ctx.requestContext);
   }),
+
+  addFavorite: protectedProcedure
+    .input(z.object({ productId: z.number().positive() }))
+    .mutation(async ({ input, ctx }) => {
+      return productService.addFavorite(input.productId, ctx.requestContext);
+    }),
+
+  removeFavorite: protectedProcedure
+    .input(z.object({ favoriteId: z.number().positive() }))
+    .mutation(async ({ input, ctx }) => {
+      await productService.removeFavorite(input.favoriteId, ctx.requestContext);
+      return { success: true };
+    }),
 });
 
 export type ProductRouter = typeof productRouter;

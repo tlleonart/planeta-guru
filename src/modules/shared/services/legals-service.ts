@@ -1,15 +1,18 @@
-import { RequestContext } from "@/modules/http";
+import type { RequestContext } from "@/modules/http";
 import { BaseService } from "@/modules/http/base-service";
-import { GetLegalsUrlApiResponse, LegalsUrls } from "../types/legals-types";
 import { mapLegalsUrlResponse } from "../mappers/legals-mapper";
+import type {
+  GetLegalsUrlApiResponse,
+  LegalsUrls,
+} from "../types/legals-types";
 
 class LegalsService extends BaseService {
-  private readonly basePath = '/landings/product-provider';
+  private readonly basePath = "/landings/product-provider";
 
   async getLegalsUrls(context: RequestContext): Promise<LegalsUrls> {
     const response = await this.http.get<GetLegalsUrlApiResponse>(
       `${this.basePath}/selected-country`,
-      { context }
+      { context },
     );
 
     return mapLegalsUrlResponse(response.data);

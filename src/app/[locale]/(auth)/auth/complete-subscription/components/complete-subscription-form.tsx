@@ -1,41 +1,43 @@
-/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <explanation> */
-"use client"
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: Decorative SVG icon does not require title */
+"use client";
 
+import { useSignIn } from "@clerk/nextjs";
+import { useTranslations } from "next-intl";
+import { type FC, useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { Button } from "@/modules/shared/components/ui/button";
 import { Input } from "@/modules/shared/components/ui/input";
 import { Label } from "@/modules/shared/components/ui/label";
-import { useSignIn } from "@clerk/nextjs";
-import { useTranslations } from "next-intl";
-import { FC, useState } from "react";
 
 interface CompleteSubscriptionFormProps {
-  externalId: string
+  externalId: string;
 }
 
-export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ externalId }) => {
+export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({
+  externalId,
+}) => {
   const t = useTranslations("CompleteSubscription");
 
   const { setActive, signIn } = useSignIn();
   const router = useRouter();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const signInAndRedirect = async (userId: string) => {
-    const resp = await fetch('/api/users/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const resp = await fetch("/api/users/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
     });
 
     const { token } = await resp.json();
 
-    const attempt = await signIn?.create({ strategy: 'ticket', ticket: token });
+    const attempt = await signIn?.create({ strategy: "ticket", ticket: token });
 
-    if (attempt?.status === 'complete' && setActive) {
+    if (attempt?.status === "complete" && setActive) {
       await setActive({ session: attempt.createdSessionId });
     }
 
@@ -46,44 +48,50 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
     e.preventDefault();
     setError(null);
     try {
-      const existsRes = await fetch('/api/users/exists', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const existsRes = await fetch("/api/users/exists", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, externalId, userName }),
       });
 
       const existsData = await existsRes.json();
 
       if (
-        existsData.matchedBy === 'externalId' ||
-        existsData.matchedBy === 'email'
+        existsData.matchedBy === "externalId" ||
+        existsData.matchedBy === "email"
       ) {
         await signInAndRedirect(existsData.userId);
         return;
       }
 
-      if (existsData.matchedBy === 'userName') {
+      if (existsData.matchedBy === "userName") {
         setError(existsData.message && t("userError"));
         return;
       }
 
-      const resp = await fetch('/api/users/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, userName, email, externalId }),
+      const resp = await fetch("/api/users/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          userName,
+          email,
+          externalId,
+        }),
       });
 
       if (!resp.ok) {
         const { message } = await resp.json();
-        throw new Error(message || 'Error en registro');
+        throw new Error(message || "Error en registro");
       }
 
       const { userId } = await resp.json();
 
       await signInAndRedirect(userId);
-      return
+      return;
     } catch (err) {
-      console.error('Error al completar la suscripción:', err);
+      console.error("Error al completar la suscripción:", err);
       setError(t("genericError"));
     }
   };
@@ -91,14 +99,17 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white text-black rounded-none shadow font-clerk">
       <h1 className="text-lg font-bold text-center mb-2">{t("title")}</h1>
-      <p className="text-center text-[0.8125rem] text-gray-600 mb-6">{t("description")}</p>
+      <p className="text-center text-[0.8125rem] text-gray-600 mb-6">
+        {t("description")}
+      </p>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
-
           <div className="flex flex-col gap-2">
             <Label className="flex justify-between text-[0.8125rem] font-semibold">
               {t("firstName")}
-              <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
+              <span className="text-[0.7rem] text-gray-500">
+                {t("optional")}
+              </span>
             </Label>
             <Input
               type="text"
@@ -112,7 +123,9 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
           <div className="flex flex-col gap-2">
             <Label className="flex justify-between text-[0.8125rem] font-semibold">
               {t("lastName")}
-              <span className="text-[0.7rem] text-gray-500">{t("optional")}</span>
+              <span className="text-[0.7rem] text-gray-500">
+                {t("optional")}
+              </span>
             </Label>
             <Input
               type="text"
@@ -122,11 +135,12 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
               className="w-full p-2 border rounded-none placeholder:text-[0.8125rem]"
             />
           </div>
-
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label className="block text-[0.8125rem] font-semibold">{t("userName")}</Label>
+          <Label className="block text-[0.8125rem] font-semibold">
+            {t("userName")}
+          </Label>
           <Input
             type="text"
             value={userName}
@@ -138,7 +152,9 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label className="block text-[0.8125rem] font-semibold">{t("email")}</Label>
+          <Label className="block text-[0.8125rem] font-semibold">
+            {t("email")}
+          </Label>
           <Input
             type="email"
             value={email}
@@ -177,4 +193,4 @@ export const CompleteSubscriptionForm: FC<CompleteSubscriptionFormProps> = ({ ex
       </form>
     </div>
   );
-}
+};

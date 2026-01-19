@@ -7,7 +7,6 @@ import {
   type RequestContext,
 } from "./types";
 
-
 export class HttpClient {
   private readonly baseUrl: string;
   private readonly platformKey: string;
@@ -46,7 +45,7 @@ export class HttpClient {
 
   private buildUrl(
     endpoint: string,
-    params?: Record<string, string | number | boolean | undefined>
+    params?: Record<string, string | number | boolean | undefined>,
   ): string {
     const url = new URL(`${this.baseUrl}/${endpoint}`);
 
@@ -63,7 +62,7 @@ export class HttpClient {
 
   private async executeRequest<T>(
     url: string,
-    options: HttpRequestOptions
+    options: HttpRequestOptions,
   ): Promise<HttpResponse<T>> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
@@ -83,7 +82,7 @@ export class HttpClient {
           errorBody.message ?? `HTTP Error: ${response.status}`,
           response.status,
           errorBody.code,
-          errorBody.details
+          errorBody.details,
         );
       }
 
@@ -116,14 +115,14 @@ export class HttpClient {
       throw new HttpClientError(
         error instanceof Error ? error.message : "Unknown error occurred",
         500,
-        "UNKNOWN_ERROR"
+        "UNKNOWN_ERROR",
       );
     }
   }
 
   async get<T>(
     endpoint: string,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<HttpResponse<T>> {
     const { params, context, ...fetchOptions } = options;
     const url = this.buildUrl(endpoint, params);
@@ -142,7 +141,7 @@ export class HttpClient {
   async post<T, B = unknown>(
     endpoint: string,
     body?: B,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<HttpResponse<T>> {
     const { params, context, ...fetchOptions } = options;
     const url = this.buildUrl(endpoint, params);
@@ -159,7 +158,7 @@ export class HttpClient {
   async put<T, B = unknown>(
     endpoint: string,
     body?: B,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<HttpResponse<T>> {
     const { params, context, ...fetchOptions } = options;
     const url = this.buildUrl(endpoint, params);
@@ -176,7 +175,7 @@ export class HttpClient {
   async patch<T, B = unknown>(
     endpoint: string,
     body?: B,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<HttpResponse<T>> {
     const { params, context, ...fetchOptions } = options;
     const url = this.buildUrl(endpoint, params);
@@ -192,7 +191,7 @@ export class HttpClient {
 
   async delete<T>(
     endpoint: string,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<HttpResponse<T>> {
     const { params, context, ...fetchOptions } = options;
     const url = this.buildUrl(endpoint, params);
@@ -208,19 +207,18 @@ export class HttpClient {
   async getPaginated<T, K extends string>(
     endpoint: string,
     dataKey: K,
-    options: HttpRequestOptions = {}
+    options: HttpRequestOptions = {},
   ): Promise<{
-    data: T[]
-    pagination: ApiPagination
+    data: T[];
+    pagination: ApiPagination;
   }> {
-    const response = await this.get<Record<K, T[]> & { pagination: ApiPagination }>(
-    endpoint,
-    options
-  );
+    const response = await this.get<
+      Record<K, T[]> & { pagination: ApiPagination }
+    >(endpoint, options);
 
-  return {
-    data: response.data[dataKey],
-    pagination: response.data.pagination,
-  };
-}
+    return {
+      data: response.data[dataKey],
+      pagination: response.data.pagination,
+    };
+  }
 }

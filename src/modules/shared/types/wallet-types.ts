@@ -1,4 +1,8 @@
-import { ApiPagination, PaginatedResponse, PaginationParams } from "./api-types";
+import type {
+  ApiPagination,
+  PaginatedResponse,
+  PaginationParams,
+} from "./api-types";
 
 export interface Wallet {
   id: number;

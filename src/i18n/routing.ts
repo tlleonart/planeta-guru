@@ -53,13 +53,15 @@ const AVAILABLE_LANGUAGES: Languages[] = [
 const AVAILABLE_LOCALES: Locale[] = AVAILABLE_COUNTRIES.flatMap((country) =>
   AVAILABLE_LANGUAGES.map(
     (language) =>
-      `${country.code.toLowerCase()}-${language.code.toLowerCase()}` as Locale
-  )
+      `${country.code.toLowerCase()}-${language.code.toLowerCase()}` as Locale,
+  ),
 );
 
-const DEFAULT_LOCALE = "mx-es";
+const DEFAULT_LOCALE = "ar-es";
 
 export const routing = defineRouting({
   locales: AVAILABLE_LOCALES,
   defaultLocale: DEFAULT_LOCALE,
 });
+
+export { AVAILABLE_COUNTRIES, AVAILABLE_LANGUAGES, AVAILABLE_LOCALES };

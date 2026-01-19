@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { protectedProcedure, router } from '../trpc/trpc';
-import { walletService } from '@/modules/shared/services/wallet-service';
+import { z } from "zod";
+import { walletService } from "@/modules/shared/services/wallet-service";
+import { protectedProcedure, router } from "../trpc/trpc";
 
 const walletHistorySchema = z.object({
   page: z.number().min(1).default(1),

@@ -3,7 +3,7 @@ type Props = {
 };
 
 export default async function CompleteSubscription({ searchParams }: Props) {
-    const { userId } = await searchParams;
+  const { userId } = await searchParams;
 
-    return <div>CompleteSubscription {userId}</div>;
+  return <div>CompleteSubscription {userId}</div>;
 }

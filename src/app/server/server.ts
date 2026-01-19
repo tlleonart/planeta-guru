@@ -1,11 +1,11 @@
 import "server-only";
 
-import { cache } from "react";
-import { headers } from "next/headers";
 import { createHydrationHelpers } from "@trpc/react-query/rsc";
+import { headers } from "next/headers";
+import { cache } from "react";
+import { createQueryClient } from "@/modules/shared/lib/trpc/query-client";
 import { type AppRouter, createCaller } from "./routers";
 import { createTRPCContext } from "./trpc/context";
-import { createQueryClient } from "@/modules/shared/lib/trpc/query-client";
 
 /**
  * Crea el contexto de forma cacheada para Server Components.
@@ -42,5 +42,5 @@ const caller = createCaller(createContext);
  */
 export const { trpc: api, HydrateClient } = createHydrationHelpers<AppRouter>(
   caller,
-  getQueryClient
+  getQueryClient,
 );

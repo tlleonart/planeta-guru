@@ -1,7 +1,7 @@
-import { RequestContext } from "@/modules/http";
 import { auth } from "@clerk/nextjs/server";
 import { cookies } from "next/headers";
 import { cache } from "react";
+import type { RequestContext } from "@/modules/http";
 
 export interface TRPCContext {
   headers: Headers;
@@ -11,8 +11,8 @@ export interface TRPCContext {
 }
 
 const defaultRequestContext: RequestContext = {
-  selectedCountry: 'MX',
-  selectedLanguage: 'es',
+  selectedCountry: "AR",
+  selectedLanguage: "es",
   authToken: undefined,
   msisdn: undefined,
 };
@@ -35,8 +35,12 @@ export async function createTRPCContext(opts: {
   const { cookieStore, authToken, clerkAuth } = await getCacheAuthData();
 
   const requestContext: RequestContext = {
-    selectedCountry: cookieStore.get("selectedCountry")?.value ?? defaultRequestContext.selectedCountry,
-    selectedLanguage: cookieStore.get("selectedLanguage")?.value ?? defaultRequestContext.selectedLanguage,
+    selectedCountry:
+      cookieStore.get("selectedCountry")?.value ??
+      defaultRequestContext.selectedCountry,
+    selectedLanguage:
+      cookieStore.get("selectedLanguage")?.value ??
+      defaultRequestContext.selectedLanguage,
     authToken: authToken || defaultRequestContext.authToken,
     msisdn: cookieStore.get("msisdn")?.value ?? defaultRequestContext.msisdn,
   };

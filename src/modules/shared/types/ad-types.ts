@@ -1,5 +1,10 @@
-import { ApiMessage, Pagination } from "./api-types";
-import { Description, DescriptionApiModel, Media, MediaApiModel } from "./product-types";
+import type { ApiMessage, Pagination } from "./api-types";
+import type {
+  Description,
+  DescriptionApiModel,
+  Media,
+  MediaApiModel,
+} from "./product-types";
 
 export type Ad = {
   id: number;
@@ -11,16 +16,16 @@ export type Ad = {
 };
 
 export type AdApiModel = {
-    id: number
-    product_id: number
-    section_id: number
-    position: number
-    descriptions: DescriptionApiModel[]
-    media: MediaApiModel[]
-}
+  id: number;
+  product_id: number;
+  section_id: number;
+  position: number;
+  descriptions: DescriptionApiModel[];
+  media: MediaApiModel[];
+};
 
 export interface AdApiResponse {
-    featured_products: AdApiModel[]
-    pagination: Pagination
-    message: ApiMessage
+  featured_products: AdApiModel[];
+  pagination: Pagination;
+  message: ApiMessage;
 }

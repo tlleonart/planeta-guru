@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchStreamLink, loggerLink } from "@trpc/react-query";
+import { useState } from "react";
 import SuperJSON from "superjson";
 import { trpc } from "./client";
 import { createQueryClient } from "./query-client";
@@ -74,7 +74,7 @@ export function TRPCProvider({ children }: TRPCProviderProps) {
           },
         }),
       ],
-    })
+    }),
   );
 
   return (

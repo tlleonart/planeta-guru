@@ -1,6 +1,6 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -8,8 +8,30 @@ const nextConfig: NextConfig = {
     root: path.join(__dirname, ".."),
   },
   images: {
-    remotePatterns: [new URL("https://storage.googleapis.com/**")]
-  }
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        port: "",
+        pathname: "/planeta-guru-assets-bucket/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        port: "",
+        pathname: "/products-ms-bucket/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+        port: "",
+        pathname: "/**",
+        search: "",
+      },
+    ],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

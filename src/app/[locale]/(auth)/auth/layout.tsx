@@ -8,9 +8,7 @@ export default function AuthLayout({ children }: Props) {
   return (
     <>
       <HeaderComponent />
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow">{children}</main>
     </>
-  )
+  );
 }
