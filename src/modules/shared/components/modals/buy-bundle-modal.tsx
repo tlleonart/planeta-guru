@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { type FC, useState } from "react";
 import {
@@ -40,10 +41,12 @@ const BuyBundleModal: FC<BuyBundleModalProps> = ({
 }) => {
   const t = useTranslations("BuyBundleModal");
   const locale = useLocale();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const openModal = useModalStore((state) => state.openModal);
 
-  const localeString = locale.replace("-", "_");
+  // BCP 47 language tags use hyphens (ar-ES), not underscores
+  const localeString = locale;
   const remaining = walletAmount - price;
 
   const tableItems = [
@@ -61,6 +64,8 @@ const BuyBundleModal: FC<BuyBundleModalProps> = ({
         await externalProviderPurchaseAction(bundleId, null);
       }
       onClose();
+      // Refresh page data to update isOwner status
+      router.refresh();
       openModal("Confirmation", {
         title: t("successTitle"),
         message: t("successMessage"),
@@ -68,7 +73,20 @@ const BuyBundleModal: FC<BuyBundleModalProps> = ({
     } catch (error) {
       console.error("Purchase error:", error);
       onClose();
-      openModal("Error", { message: t("error") });
+      openModal("Error", {
+        message: t("error"),
+        onRetry: () => {
+          openModal("BuyBundle", {
+            productName,
+            bundleId,
+            bundleTitle,
+            price,
+            walletAmount,
+            walletId,
+            supportsCodes,
+          });
+        },
+      });
     } finally {
       setLoading(false);
     }

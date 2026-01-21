@@ -28,9 +28,11 @@ export const PackCard: FC<PackCardProps> = ({
   origin,
 }) => {
   const parsedValue = parseFloat(value).toFixed(0);
+  // Bug #7: Go directly to payment summary modal with CARD method (skip payment method selection)
+  const baseUrl = `/charge-gurus/payments/${parsedValue}/${id}/${price}/${transactionCost}/${totalPrice}/CARD`;
   const href = origin
-    ? `/charge-gurus/payments/${parsedValue}/${id}/${price}/${transactionCost}/${totalPrice}?origin=${encodeURIComponent(origin)}`
-    : `/charge-gurus/payments/${parsedValue}/${id}/${price}/${transactionCost}/${totalPrice}`;
+    ? `${baseUrl}?payment-modal=true&origin=${encodeURIComponent(origin)}`
+    : `${baseUrl}?payment-modal=true`;
 
   return (
     <Link href={href}>

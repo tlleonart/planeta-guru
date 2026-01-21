@@ -12,7 +12,10 @@ export interface BuyButtonProps {
   slug: string;
   price: number;
   walletAmount: number;
-  productTypeId?: number;
+  walletId?: number;
+  bundleId?: number;
+  bundleTitle?: string;
+  productName?: string;
 }
 
 /**
@@ -25,7 +28,10 @@ export const BuyButton: FC<BuyButtonProps> = ({
   slug,
   price,
   walletAmount,
-  productTypeId,
+  walletId = 0,
+  bundleId = 0,
+  bundleTitle = "",
+  productName = "",
 }) => {
   const t = useTranslations("BuyButton");
   const router = useRouter();
@@ -53,12 +59,14 @@ export const BuyButton: FC<BuyButtonProps> = ({
       return;
     }
 
-    // Open buy confirmation modal
-    openModal("Confirmation", {
-      title: t("confirmPurchase"),
+    // Open buy bundle modal for purchase flow
+    openModal("BuyBundle", {
+      productName,
+      bundleId,
+      bundleTitle,
       price,
-      slug,
-      productTypeId,
+      walletAmount,
+      walletId,
     });
   };
 

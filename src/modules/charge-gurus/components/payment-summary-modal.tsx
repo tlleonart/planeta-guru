@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import type { FC, MouseEvent } from "react";
 import { useState } from "react";
@@ -12,8 +13,8 @@ import {
   DialogTitle,
 } from "@/modules/shared/components/ui/dialog";
 import { cn } from "@/modules/shared/lib/utils";
+import { useModalStore } from "@/modules/shared/providers/modal-store-provider";
 import guruCoin from "@/public/guru-coin.svg";
-import { useConfirmPaymentModal } from "../hooks/use-confirm-payment-modal";
 import { usePaymentModal } from "../hooks/use-payment-modal";
 
 interface PaymentSummaryModalProps {
@@ -21,12 +22,15 @@ interface PaymentSummaryModalProps {
   price: string;
   transactionCost: string;
   totalPrice: string;
+  packId?: number;
+  method?: string;
+  realIp?: string;
 }
 
 /**
  * Client Component: Modal de resumen de compra
  * - Muestra desglose de precio (costo + servicio = total)
- * - Botón de confirmar abre ConfirmPaymentModal
+ * - Bug #8: Confirmar llama directamente a la API de pago (sin modal intermedio)
  * - Botón de cancelar cierra el modal
  * - State gestionado con nuqs (URL-based)
  */
@@ -35,21 +39,66 @@ export const PaymentSummaryModal: FC<PaymentSummaryModalProps> = ({
   price,
   transactionCost,
   totalPrice,
+  packId,
+  method,
+  realIp,
 }) => {
   const { isOpen, setIsOpen, close } = usePaymentModal();
-  const { open: openConfirm } = useConfirmPaymentModal();
   const [loading, setLoading] = useState(false);
   const t = useTranslations("PaymentModal");
+  const tError = useTranslations("ErrorModal");
+  const searchParams = useSearchParams();
+  const openModal = useModalStore((state) => state.openModal);
 
   const currencyTitleClass = "text-sm sm:text-base md:text-lg";
   const currencyValueClass = "text-sm sm:text-base md:text-lg";
 
-  const handleConfirm = (event: MouseEvent<HTMLButtonElement>) => {
+  // Bug #8: Call payment API directly instead of opening ConfirmPaymentModal
+  const handleConfirm = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setLoading(true);
-    openConfirm();
-    close();
-    setLoading(false);
+
+    try {
+      const origin = searchParams.get("origin");
+      const customSuccessUrl = origin
+        ? `${window.location.origin}${origin}`
+        : undefined;
+
+      const payload = {
+        guru_pack_id: packId,
+        payment_method: method ?? "CARD",
+        custom_success_url: customSuccessUrl ?? null,
+        user_ip_address: realIp ?? null,
+      };
+
+      const response = await fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Payment failed");
+      }
+
+      const data = await response.json();
+
+      // Redirect directly to MercadoPago
+      const link = data.id.purchase_link;
+      window.location.href = link;
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      close();
+      openModal("Error", {
+        message: tError("defaultMessage"),
+        onRetry: () => setIsOpen(true),
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

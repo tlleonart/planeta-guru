@@ -5,6 +5,7 @@ import { Bullets } from "../shared/components/bullets";
 import { Exclusive } from "../shared/components/exclusive";
 import { ImageCarousel } from "../shared/components/image-carousel";
 import { Instructions } from "../shared/components/instructions";
+import { getDescription } from "../shared/lib/get-descriptions";
 import { ComboBundlesGrid } from "./components/combo-bundles-grid";
 import { ComboCard } from "./components/combo-card";
 import { ComboContainer } from "./components/combo-container";
@@ -20,8 +21,8 @@ export interface ComboPageProps {
  * - Caracteristicas unicas: ComboBundlesGrid con modal especial de combo
  */
 export const ComboPage: FC<ComboPageProps> = ({ product }) => {
-  const description =
-    product.descriptions?.find((d) => d.descriptionTypeId === 1)?.text || "";
+  // Bug #6: Use getDescription to prioritize long description over short
+  const description = getDescription(product.descriptions || []);
   const price = product.bundles[0]?.finalPriceInCurrency || 0;
   const currency = product.bundles[0]?.currency || "";
   const region = product.bundles[0]?.region?.name || "";

@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import type { Product } from "@/modules/shared/types/product-types";
+import { getDescription } from "../shared/lib/get-descriptions";
 import {
   GameHTMLCard,
   GameHTMLContainer,
@@ -9,6 +10,7 @@ import {
 export interface GameHTMLPageProps {
   product: Product;
   walletAmount?: number;
+  walletId?: number;
 }
 
 /**
@@ -19,12 +21,14 @@ export interface GameHTMLPageProps {
 export const GameHTMLPage: FC<GameHTMLPageProps> = ({
   product,
   walletAmount = 0,
+  walletId = 0,
 }) => {
   // Extraer datos necesarios
   const categoryName = product.categories[0]?.categoryLanguages[0]?.name || "";
-  const description =
-    product.descriptions?.find((d) => d.descriptionTypeId === 1)?.text || "";
-  const price = product.bundles[0]?.price || 0;
+  // Bug #6: Use getDescription to prioritize long description over short
+  const description = getDescription(product.descriptions || []);
+  const bundle = product.bundles[0];
+  const price = bundle?.price || 0;
 
   return (
     <main>
@@ -42,9 +46,11 @@ export const GameHTMLPage: FC<GameHTMLPageProps> = ({
             isFavorite={product.isFavorite}
             isOwner={product.isOwner}
             walletAmount={walletAmount}
+            walletId={walletId}
+            bundleId={bundle?.id || 0}
+            bundleTitle={bundle?.title || ""}
             productId={product.id}
             favoriteId={product.favoriteId}
-            productTypeId={product.productTypeId}
           />
         </GameHTMLContainer>
       </section>

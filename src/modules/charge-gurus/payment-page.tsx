@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import type { FC } from "react";
-import { ConfirmPaymentModal } from "./components/confirm-payment-modal";
 import { PaymentMethods } from "./components/payment-methods";
 import { PaymentSummaryModal } from "./components/payment-summary-modal";
 
@@ -40,17 +39,15 @@ export const PaymentPage: FC<PaymentPageProps> = async ({
 
   return (
     <>
-      <ConfirmPaymentModal
-        id={id}
-        method={method ?? ""}
-        origin={origin}
-        realIp={realIp}
-      />
+      {/* Bug #8: ConfirmPaymentModal is no longer needed - payment is processed directly from PaymentSummaryModal */}
       <PaymentSummaryModal
         pack={formattedPack}
         price={price}
         transactionCost={transactionCost}
         totalPrice={totalPrice}
+        packId={id}
+        method={method}
+        realIp={realIp}
       />
       <main className="flex flex-col justify-center items-center w-full h-screen gap-8 md:absolute">
         <div className="flex flex-col justify-center text-center gap-2">

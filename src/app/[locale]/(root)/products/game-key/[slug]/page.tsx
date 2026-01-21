@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { api } from "@/app/server/server";
@@ -21,10 +22,29 @@ export default async function GameKeyPageRoute({
   const { slug } = await params;
 
   try {
+    const { userId } = await auth();
     const product = await api.product.getBySlug({ slug });
-    const walletAmount = 0; // TODO: Fetch from wallet service
 
-    return <GameKeyPage product={product} walletAmount={walletAmount} />;
+    // Fetch wallet if user is authenticated
+    let walletAmount = 0;
+    let walletId = 0;
+    if (userId) {
+      try {
+        const wallet = await api.wallet.getWallet();
+        walletAmount = wallet.amount;
+        walletId = wallet.id;
+      } catch {
+        // User might not have a wallet yet - ignore error
+      }
+    }
+
+    return (
+      <GameKeyPage
+        product={product}
+        walletAmount={walletAmount}
+        walletId={walletId}
+      />
+    );
   } catch (error) {
     console.error(`[GAME_KEY_PAGE] Error fetching product ${slug}:`, error);
     notFound();

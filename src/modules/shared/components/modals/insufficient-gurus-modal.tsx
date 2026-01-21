@@ -30,19 +30,19 @@ const InsufficientGurusModal: FC<InsufficientGurusModalProps> = ({
     <BaseModal onClose={onClose} title={t("title")}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4 text-center">
-          <p className="text-lg">{t("description")}</p>
-          <div className="bg-gray-100 p-4 rounded">
+          <p className="text-lg text-gray-800">{t("description")}</p>
+          <div className="bg-white p-4 rounded border border-gray-200">
             <div className="flex justify-between mb-2">
-              <span>{t("required")}:</span>
-              <span className="font-bold">{required} GURUs</span>
+              <span className="text-gray-700">{t("required")}:</span>
+              <span className="font-bold text-gray-900">{required} GURUs</span>
             </div>
             <div className="flex justify-between mb-2">
-              <span>{t("current")}:</span>
-              <span className="font-bold">{current} GURUs</span>
+              <span className="text-gray-700">{t("current")}:</span>
+              <span className="font-bold text-gray-900">{current} GURUs</span>
             </div>
-            <div className="flex justify-between border-t pt-2">
-              <span>{t("missing")}:</span>
-              <span className="font-bold text-red-500">{missing} GURUs</span>
+            <div className="flex justify-between border-t border-gray-200 pt-2">
+              <span className="text-gray-700">{t("missing")}:</span>
+              <span className="font-bold text-red-600">{missing} GURUs</span>
             </div>
           </div>
         </div>

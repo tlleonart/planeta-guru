@@ -12,6 +12,7 @@ export interface BundlesCardProps {
   walletAmount: number;
   walletId: number;
   productName: string;
+  supportsCodes?: boolean;
 }
 
 /**
@@ -28,6 +29,7 @@ export const BundlesCard: FC<BundlesCardProps> = ({
   walletAmount,
   walletId,
   productName,
+  supportsCodes = true,
 }) => {
   const { isSignedIn } = useUser();
   const openModal = useModalStore((state) => state.openModal);
@@ -52,6 +54,7 @@ export const BundlesCard: FC<BundlesCardProps> = ({
       price,
       walletAmount,
       walletId,
+      supportsCodes,
     });
   };
 

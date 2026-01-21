@@ -43,6 +43,14 @@ next-env.d.ts
 # clerk configuration (can include secrets)
 /.clerk/
 
+# playwright MCP screenshots (testing artifacts)
+.playwright-mcp/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Windows artifacts
+nul
 
 RETROSPECTIVA.md
 TESTING.md

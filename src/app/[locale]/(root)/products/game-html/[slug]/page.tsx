@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import { api } from "@/app/server/server";
 import { GameHTMLPage } from "@/modules/products/game-html/game-html-page";
@@ -21,14 +22,29 @@ export default async function GameHTMLPageRoute({
   const { slug } = await params;
 
   try {
-    // Fetch producto usando tRPC
+    const { userId } = await auth();
     const product = await api.product.getBySlug({ slug });
 
-    // TODO: Fetch wallet amount si el usuario está autenticado
-    // const wallet = await api.wallet.get();
-    const walletAmount = 0;
+    // Fetch wallet if user is authenticated
+    let walletAmount = 0;
+    let walletId = 0;
+    if (userId) {
+      try {
+        const wallet = await api.wallet.getWallet();
+        walletAmount = wallet.amount;
+        walletId = wallet.id;
+      } catch {
+        // User might not have a wallet yet - ignore error
+      }
+    }
 
-    return <GameHTMLPage product={product} walletAmount={walletAmount} />;
+    return (
+      <GameHTMLPage
+        product={product}
+        walletAmount={walletAmount}
+        walletId={walletId}
+      />
+    );
   } catch (error) {
     console.error(`[GAME_HTML_PAGE] Error fetching product ${slug}:`, error);
     notFound();

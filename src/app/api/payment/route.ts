@@ -38,10 +38,10 @@ export async function POST(request: Request) {
     const body: PaymentRequest = await request.json();
     const cookieStore = await cookies();
 
-    const selectedCountry =
-      cookieStore.get("selectedCountry")?.value?.toLowerCase() || "ar";
-    const selectedLanguage =
-      cookieStore.get("selectedLanguage")?.value?.toLowerCase() || "es";
+    // Country debe estar en MAYÚSCULAS (AR, MX, etc.) - así lo guarda proxy.ts
+    const selectedCountry = cookieStore.get("selectedCountry")?.value || "AR";
+    // Language en minúsculas (es, en)
+    const selectedLanguage = cookieStore.get("selectedLanguage")?.value || "es";
 
     const authToken = await getToken();
 

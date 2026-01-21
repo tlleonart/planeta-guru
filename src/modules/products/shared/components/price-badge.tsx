@@ -19,9 +19,8 @@ export const PriceBadge: FC<PriceBadgeProps> = ({ price, currency }) => {
   const t = useTranslations("PriceBadge");
   const locale = useLocale();
 
-  const formattedPrice = currency
-    ? price.toLocaleString(locale.replace("-", "_"))
-    : price;
+  // BCP 47 language tags use hyphens (ar-ES), not underscores
+  const formattedPrice = currency ? price.toLocaleString(locale) : price;
 
   return (
     <div className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg shadow-lg">

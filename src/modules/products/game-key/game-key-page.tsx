@@ -2,6 +2,7 @@ import type { FC } from "react";
 import type { Product } from "@/modules/shared/types/product-types";
 import { About } from "../shared/components/about";
 import { Bullets } from "../shared/components/bullets";
+import { getDescription } from "../shared/lib/get-descriptions";
 import { getBannersByDevice } from "../shared/lib/get-media";
 import { GameKeyCard } from "./components/game-key-card";
 import { GameKeyContainer } from "./components/game-key-container";
@@ -12,6 +13,7 @@ import { GameKeyRequirements } from "./components/game-key-requirements";
 export interface GameKeyPageProps {
   product: Product;
   walletAmount?: number;
+  walletId?: number;
 }
 
 /**
@@ -23,14 +25,16 @@ export interface GameKeyPageProps {
 export const GameKeyPage: FC<GameKeyPageProps> = ({
   product,
   walletAmount = 0,
+  walletId = 0,
 }) => {
   const desktopBanner = getBannersByDevice(product.media || [], "desktop");
   const mobileBanner = getBannersByDevice(product.media || [], "mobile");
-  const description =
-    product.descriptions?.find((d) => d.descriptionTypeId === 1)?.text || "";
-  const price = product.bundles[0]?.price || 0;
-  const discount = product.bundles[0]?.discount?.percentage;
-  const region = product.bundles[0]?.region?.name || "";
+  // Bug #6: Use getDescription to prioritize long description over short
+  const description = getDescription(product.descriptions || []);
+  const bundle = product.bundles[0];
+  const price = bundle?.price || 0;
+  const discount = bundle?.discount?.percentage;
+  const region = bundle?.region?.name || "";
 
   return (
     <main>
@@ -50,7 +54,7 @@ export const GameKeyPage: FC<GameKeyPageProps> = ({
             productType={product.productType?.name || ""}
             productTypeId={product.productTypeId}
             productSlug={product.slug}
-            storeId={product.bundles[0]?.storeId || 0}
+            storeId={bundle?.storeId || 0}
             region={region}
             specs={product.specs || []}
             isFavorite={product.isFavorite}
@@ -59,6 +63,9 @@ export const GameKeyPage: FC<GameKeyPageProps> = ({
             mobileImage={mobileBanner}
             url={product.media?.[0]?.url || ""}
             walletAmount={walletAmount}
+            walletId={walletId}
+            bundleId={bundle?.id || 0}
+            bundleTitle={bundle?.title || ""}
           />
         </GameKeyContainer>
       </section>

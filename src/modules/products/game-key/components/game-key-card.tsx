@@ -24,6 +24,9 @@ export interface GameKeyCardProps {
   mobileImage: string;
   url: string;
   walletAmount: number;
+  walletId: number;
+  bundleId: number;
+  bundleTitle: string;
 }
 
 /**
@@ -52,6 +55,9 @@ export const GameKeyCard: FC<GameKeyCardProps> = ({
   mobileImage,
   url,
   walletAmount,
+  walletId,
+  bundleId,
+  bundleTitle,
 }) => {
   return (
     <div className="md:absolute md:left-44 md:right-auto md:w-1/3 lg:w-1/3 xl:w-1/4 w-full">
@@ -88,6 +94,10 @@ export const GameKeyCard: FC<GameKeyCardProps> = ({
             slug={productSlug}
             price={price}
             walletAmount={walletAmount}
+            walletId={walletId}
+            bundleId={bundleId}
+            bundleTitle={bundleTitle}
+            productName={name}
           />
         </div>
       </div>

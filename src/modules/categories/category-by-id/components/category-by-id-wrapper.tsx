@@ -1,6 +1,7 @@
 import { type FC, Suspense } from "react";
 import { api } from "@/app/server/server";
 import { ThumbnailGrid } from "@/modules/shared/components/thumbnail-grid";
+import type { Product } from "@/modules/shared/types/product-types";
 import { CategoriesContainer } from "../../components/categories-container";
 
 interface CategoryByIdWrapperProps {
@@ -27,29 +28,58 @@ const CategoryByIdSkeleton = () => {
   );
 };
 
+/**
+ * Fetches all products from a category by paginating through all pages
+ */
+async function fetchAllCategoryProducts(
+  categoryId: number,
+): Promise<Product[]> {
+  const allProducts: Product[] = [];
+  let currentPage = 1;
+  const perPage = 100;
+  let hasMorePages = true;
+
+  while (hasMorePages) {
+    const response = await api.product.getByCategory({
+      categoryId,
+      page: currentPage,
+      perPage,
+    });
+
+    allProducts.push(...response.items);
+
+    // Check if there are more pages
+    const { pagination } = response;
+    hasMorePages = pagination.currentPage < pagination.lastPage;
+    currentPage++;
+
+    // Safety limit to prevent infinite loops
+    if (currentPage > 50) break;
+  }
+
+  return allProducts;
+}
+
 export const CategoryByIdWrapper: FC<CategoryByIdWrapperProps> = async ({
   id,
 }) => {
-  const products = await api.product.getByCategory({
-    categoryId: Number(id),
-    page: 1,
-    perPage: 100,
-  });
+  const products = await fetchAllCategoryProducts(Number(id));
 
-  if (!products || products.items.length === 0) {
+  if (!products || products.length === 0) {
     return null;
   }
 
-  const categoryName = products.items[0].categories.find(
+  const categoryName = products[0].categories.find(
     (category) => category.categoryLanguages[0]?.categoryId === Number(id),
   )?.categoryLanguages[0]?.name;
+
   return (
     <Suspense fallback={<CategoryByIdSkeleton />}>
       <CategoriesContainer>
         <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-0 md:mb-4 px-4 md:px-10">
           {categoryName}
         </h2>
-        <ThumbnailGrid products={products.items} />
+        <ThumbnailGrid products={products} />
       </CategoriesContainer>
     </Suspense>
   );

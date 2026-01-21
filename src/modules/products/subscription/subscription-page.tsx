@@ -6,6 +6,7 @@ import { BundlesGrid } from "../shared/components/bundles-grid";
 import { Exclusive } from "../shared/components/exclusive";
 import { ImageCarousel } from "../shared/components/image-carousel";
 import { Instructions } from "../shared/components/instructions";
+import { getDescription } from "../shared/lib/get-descriptions";
 import { SubscriptionCard } from "./components/subscription-card";
 import { SubscriptionContainer } from "./components/subscription-container";
 
@@ -27,8 +28,8 @@ export const SubscriptionPage: FC<SubscriptionPageProps> = ({
   walletAmount = 0,
   walletId = 0,
 }) => {
-  const description =
-    product.descriptions?.find((d) => d.descriptionTypeId === 1)?.text || "";
+  // Bug #6: Use getDescription to prioritize long description over short
+  const description = getDescription(product.descriptions || []);
   const price = product.bundles[0]?.price || 0;
   const region = product.bundles[0]?.region?.name || "";
   const regionId = product.bundles[0]?.regionId || 0;

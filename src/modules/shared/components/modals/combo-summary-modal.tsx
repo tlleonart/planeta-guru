@@ -38,7 +38,8 @@ const ComboSummaryModal: FC<ComboSummaryModalProps> = ({
   const [loading, setLoading] = useState(false);
   const openModal = useModalStore((state) => state.openModal);
 
-  const localeString = locale.replace("-", "_");
+  // BCP 47 language tags use hyphens (ar-ES), not underscores
+  const localeString = locale;
 
   const handleConfirm = async () => {
     setLoading(true);
@@ -57,7 +58,18 @@ const ComboSummaryModal: FC<ComboSummaryModalProps> = ({
     } catch (error) {
       console.error("Combo payment error:", error);
       onClose();
-      openModal("Error", { message: t("error") });
+      openModal("Error", {
+        message: t("error"),
+        onRetry: () => {
+          openModal("ComboSummary", {
+            productName,
+            bundleId,
+            bundleTitle,
+            price,
+            currency,
+          });
+        },
+      });
     } finally {
       setLoading(false);
     }

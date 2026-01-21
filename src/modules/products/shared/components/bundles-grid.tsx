@@ -40,6 +40,7 @@ export const BundlesGrid: FC<BundlesGridProps> = ({
             walletAmount={walletAmount}
             walletId={walletId}
             productName={productName}
+            supportsCodes={!bundle.externalProviderId}
           />
         ))}
       </div>

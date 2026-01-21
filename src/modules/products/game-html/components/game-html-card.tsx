@@ -14,9 +14,11 @@ export interface GameHTMLCardProps {
   isFavorite: boolean;
   isOwner: boolean;
   walletAmount: number;
+  walletId: number;
+  bundleId: number;
+  bundleTitle: string;
   productId: number;
   favoriteId?: number;
-  productTypeId?: number;
 }
 
 /**
@@ -38,7 +40,9 @@ export const GameHTMLCard: FC<GameHTMLCardProps> = ({
   productId,
   favoriteId,
   walletAmount,
-  productTypeId,
+  walletId,
+  bundleId,
+  bundleTitle,
 }) => {
   return (
     <div className="absolute top-20 left-8 md:top-50 md:left-44 md:right-auto md:w-1/3 lg:w-1/3 xl:w-1/4 w-5/6">
@@ -78,7 +82,10 @@ export const GameHTMLCard: FC<GameHTMLCardProps> = ({
             slug={slug}
             price={price}
             walletAmount={walletAmount}
-            productTypeId={productTypeId}
+            walletId={walletId}
+            bundleId={bundleId}
+            bundleTitle={bundleTitle}
+            productName={name}
           />
         </div>
       </div>
