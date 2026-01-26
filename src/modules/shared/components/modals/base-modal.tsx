@@ -28,7 +28,7 @@ export const BaseModal: FC<BaseModalProps> = ({
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
         className={cn(
-          "w-full md:w-fit sm:max-w-lg md:max-w-[55%] border-none overflow-y-auto hidden-scrollbar max-h-[85vh] p-5 md:p-10 text-black rounded-none",
+          "w-full md:w-fit sm:max-w-lg md:max-w-[55%] border-none overflow-y-auto hidden-scrollbar max-h-[85vh] p-5 md:p-10 text-foreground rounded-none",
           full && "md:w-full",
         )}
       >

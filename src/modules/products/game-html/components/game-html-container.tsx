@@ -26,12 +26,7 @@ export const GameHTMLContainer: FC<GameHTMLContainerProps> = ({
   const mobileImage = getBannersByDevice(product.media, "mobile");
 
   return (
-    <div
-      className={cn(
-        "relative h-full md:pt-16",
-        variant === "info" && "md:pt-0",
-      )}
-    >
+    <div className={cn("relative h-full", variant === "info" && "")}>
       <div className="overflow-hidden h-full">
         <div className="h-full flex">
           <div className="flex-[0_0_100%] h-full relative">

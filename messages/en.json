@@ -142,6 +142,7 @@
   },
   "Exclusive": {
     "available": "Available for {country} and more countries",
+    "available_single": "Available for {country}",
     "text_not_available": "Not available for {country}",
     "country_not_found": "Not available for your country"
   },
@@ -196,7 +197,7 @@
     "selectLanguage": "Select your language"
   },
   "LoginButton": {
-    "text": "Log in"
+    "text": "Sign Up"
   },
   "SignUpButton": {
     "text": "Sign Up"
@@ -228,7 +229,9 @@
     "title": "Choose your country and language"
   },
   "NotLoggedInModal": {
-    "title": "Sign up or log in to have fun!"
+    "title": "Sign up or log in to have fun!",
+    "signIn": "Log In",
+    "signUp": "Sign Up"
   },
   "WatchMoreCard": {
     "watch": "See more"

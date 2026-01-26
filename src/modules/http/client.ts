@@ -78,11 +78,24 @@ export class HttpClient {
       if (!response.ok) {
         const errorBody = await response.json().catch(() => ({}));
 
+        console.error("[HttpClient] Error response:", {
+          status: response.status,
+          url,
+          errorBody: JSON.stringify(errorBody),
+        });
+
+        const errorMessage =
+          typeof errorBody.message === "string"
+            ? errorBody.message
+            : errorBody.error?.message ||
+              JSON.stringify(errorBody) ||
+              `HTTP Error: ${response.status}`;
+
         throw new HttpClientError(
-          errorBody.message ?? `HTTP Error: ${response.status}`,
+          errorMessage,
           response.status,
           errorBody.code,
-          errorBody.details,
+          errorBody,
         );
       }
 

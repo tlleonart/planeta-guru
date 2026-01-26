@@ -29,7 +29,7 @@ export const LoginButton: FC<LoginButtonProps> = ({
           "bg-white text-[#0a0a1f] hover:bg-gray-100 px-4 h-8 rounded-md font-medium text-sm",
       )}
     >
-      <Link href={`/auth/sign-in?redirect_url=${redirectUrl}`}>
+      <Link href={`/auth/sign-up?redirect_url=${redirectUrl}`}>
         {t("text")}
       </Link>
     </Button>

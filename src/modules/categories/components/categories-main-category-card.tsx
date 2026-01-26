@@ -26,18 +26,16 @@ export const CategoriesMainCategoryCard: FC<
                 align-items-end
                 cursor-pointer
                 aspect-[21/9]
-                pb-0
-                w-40
-                h-14
-                mx-1
-                lg:mx-0
-                min-w-36
+                w-full
+                h-16
+                sm:h-20
                 md:h-24
-                md:min-w-64
                 bg-cover
                 bg-top
                 shadow-lg
                 hover:bg-white/20
+                transition-colors
+                duration-200
             "
       >
         <div className="relative h-full w-1/4 pl-2 pb-2 lg:p-2 lg:pl-4 flex flex-row flex-wrap items-stretch content-center text-[10px]/[12px] lg:text-lg z-20">

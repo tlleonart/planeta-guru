@@ -103,7 +103,7 @@ export const PaymentSummaryModal: FC<PaymentSummaryModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent>
+      <DialogContent data-testid="payment-summary-modal">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>

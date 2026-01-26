@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { api } from "@/app/server/server";
 import { SubscriptionPage } from "@/modules/products/subscription/subscription-page";
 
@@ -10,11 +11,15 @@ export interface SubscriptionPageRouteProps {
   }>;
 }
 
+// Cache the product fetch to avoid duplicate calls between page and metadata
+const getProduct = cache(async (slug: string) => {
+  return api.product.getBySlug({ slug });
+});
+
 /**
  * Ruta de Subscription
  * - Fetch de producto desde API
  * - Renderiza SubscriptionPage
- * - TODO: Integrar wallet service para walletAmount real
  */
 export default async function SubscriptionPageRoute({
   params,
@@ -22,8 +27,8 @@ export default async function SubscriptionPageRoute({
   const { slug } = await params;
 
   try {
-    const { userId } = await auth();
-    const product = await api.product.getBySlug({ slug });
+    // Fetch auth and product in parallel for better performance
+    const [{ userId }, product] = await Promise.all([auth(), getProduct(slug)]);
 
     // Fetch wallet if user is authenticated
     let walletAmount = 0;
@@ -62,7 +67,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     return {
       title: `${product.name} | Planeta Guru`,

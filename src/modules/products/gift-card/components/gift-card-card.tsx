@@ -22,7 +22,9 @@ export interface GiftCardCardProps {
   favoriteId?: number;
   bundlesLength: number;
   bundleName?: string;
+  bundleId: number;
   walletAmount: number;
+  walletId: number;
 }
 
 /**
@@ -48,7 +50,9 @@ export const GiftCardCard: FC<GiftCardCardProps> = ({
   favoriteId,
   bundlesLength,
   bundleName,
+  bundleId,
   walletAmount,
+  walletId,
 }) => {
   return (
     <div className="absolute top-20 left-8 md:top-50 md:left-44 md:right-auto md:w-1/3 lg:w-1/3 xl:w-1/4 w-5/6">
@@ -94,6 +98,10 @@ export const GiftCardCard: FC<GiftCardCardProps> = ({
             slug={productSlug}
             price={price}
             walletAmount={walletAmount}
+            walletId={walletId}
+            bundleId={bundleId}
+            bundleTitle={bundleName}
+            productName={name}
           />
         </div>
       </div>

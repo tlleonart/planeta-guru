@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { api } from "@/app/server/server";
 import { GameWebGLPage } from "@/modules/products/game-webgl/game-webgl-page";
 
@@ -8,6 +9,11 @@ export interface GamesViewPageRouteProps {
     slug: string;
   }>;
 }
+
+// Cache the product fetch to avoid duplicate calls between page and metadata
+const getProduct = cache(async (slug: string) => {
+  return api.product.getBySlug({ slug });
+});
 
 /**
  * Route Page: Games View (WebGL) [slug]
@@ -22,7 +28,7 @@ export default async function GamesViewPageRoute({
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     // El juego WebGL está en media con media_type_id === 9
     const webglMedia = product.media?.find((media) => media.mediaTypeId === 9);
@@ -47,7 +53,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     return {
       title: `${product.name} | Planeta Guru`,

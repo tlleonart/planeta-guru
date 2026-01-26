@@ -37,7 +37,7 @@ export const GiftCardPage: FC<GiftCardPageProps> = ({
   return (
     <main>
       {/* Sección 1: Banner con card */}
-      <section className="h-full md:h-screen pt-16 md:pt-6">
+      <section className="h-full md:h-screen">
         <GiftCardContainer product={product} variant="banner">
           <GiftCardCard
             productId={product.id}
@@ -54,7 +54,9 @@ export const GiftCardPage: FC<GiftCardPageProps> = ({
             favoriteId={product.favoriteId}
             bundlesLength={product.bundles.length}
             bundleName={product.bundles[0]?.title}
+            bundleId={product.bundles[0]?.id || 0}
             walletAmount={walletAmount}
+            walletId={walletId}
           />
         </GiftCardContainer>
       </section>

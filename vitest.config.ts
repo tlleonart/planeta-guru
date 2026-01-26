@@ -4,10 +4,11 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react()],
+  assetsInclude: ["**/*.webp", "**/*.png", "**/*.jpg", "**/*.svg"],
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./tests/setup.ts"],
+    setupFiles: ["./tests/setup.tsx"],
     include: ["tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["tests/e2e/**/*"],
     coverage: {
@@ -21,10 +22,19 @@ export default defineConfig({
         "**/types/**",
       ],
     },
+    server: {
+      deps: {
+        inline: [/@\/public/],
+      },
+    },
   },
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: [
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+      {
+        find: /^@\/public(.*)/,
+        replacement: path.resolve(__dirname, "./public$1"),
+      },
+    ],
   },
 });

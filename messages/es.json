@@ -142,6 +142,7 @@
   },
   "Exclusive": {
     "available": "Disponible para {country} y más países",
+    "available_single": "Disponible para {country}",
     "text_not_available": "No disponible para {country}",
     "country_not_found": "No disponible para tu país"
   },
@@ -196,7 +197,7 @@
     "selectLanguage": "Selecciona tu idioma"
   },
   "LoginButton": {
-    "text": "Ingresar"
+    "text": "Registrarme"
   },
   "SignUpButton": {
     "text": "Regístrate"
@@ -228,7 +229,9 @@
     "title": "Elige tu país e idioma"
   },
   "NotLoggedInModal": {
-    "title": "¡Inicia sesión o regístrate para divertirte al máximo!"
+    "title": "¡Inicia sesión o regístrate para divertirte al máximo!",
+    "signIn": "Ingresar",
+    "signUp": "Registrarme"
   },
   "WatchMoreCard": {
     "watch": "Ver más"

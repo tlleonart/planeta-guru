@@ -38,9 +38,10 @@ export const SubscriptionCard: FC = () => {
 
   return (
     <button
-      className="bg-white/20 w-32 md:w-60 min-h-28 flex flex-col relative justify-center items-center p-4 cursor-pointer hover:bg-white/10 transition-all duration-300"
+      className="bg-white/20 w-full min-h-28 md:min-h-32 flex flex-col relative justify-center items-center p-4 cursor-pointer hover:bg-white/10 transition-all duration-300"
       onClick={handleRegister}
       type="button"
+      data-testid="subscription-card"
     >
       <div className="absolute top-4 right-4">
         <Star fill="yellow" size={15} className="text-amber-300" />

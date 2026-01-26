@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { api } from "@/app/server/server";
 import { ComboPage } from "@/modules/products/combo/combo-page";
 
@@ -8,6 +9,11 @@ export interface ComboRouteProps {
     slug: string;
   }>;
 }
+
+// Cache the product fetch to avoid duplicate calls between page and metadata
+const getProduct = cache(async (slug: string) => {
+  return api.product.getBySlug({ slug });
+});
 
 /**
  * Route Page: Combo [slug]
@@ -19,7 +25,7 @@ export default async function ComboRoute({ params }: ComboRouteProps) {
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     return <ComboPage product={product} />;
   } catch (error) {
@@ -34,7 +40,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     return {
       title: `${product.name} | Planeta Guru`,

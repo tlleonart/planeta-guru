@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
+import { cache } from "react";
 import { api } from "@/app/server/server";
 import { GameHTMLPage } from "@/modules/products/game-html/game-html-page";
 
@@ -9,6 +10,11 @@ interface GameHTMLPageRouteProps {
     slug: string;
   }>;
 }
+
+// Cache the product fetch to avoid duplicate calls between page and metadata
+const getProduct = cache(async (slug: string) => {
+  return api.product.getBySlug({ slug });
+});
 
 /**
  * Página de producto Game HTML
@@ -22,8 +28,8 @@ export default async function GameHTMLPageRoute({
   const { slug } = await params;
 
   try {
-    const { userId } = await auth();
-    const product = await api.product.getBySlug({ slug });
+    // Fetch auth and product in parallel for better performance
+    const [{ userId }, product] = await Promise.all([auth(), getProduct(slug)]);
 
     // Fetch wallet if user is authenticated
     let walletAmount = 0;
@@ -58,7 +64,7 @@ export async function generateMetadata({ params }: GameHTMLPageRouteProps) {
   const { slug } = await params;
 
   try {
-    const product = await api.product.getBySlug({ slug });
+    const product = await getProduct(slug);
 
     return {
       title: `${product.name} | Planeta Guru`,

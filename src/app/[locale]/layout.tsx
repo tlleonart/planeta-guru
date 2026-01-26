@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
 import { routing } from "@/i18n/routing";
 import { ModalRenderer } from "@/modules/shared/components/modals/modal-renderer";
+import { NavigationProgress } from "@/modules/shared/components/navigation-progress";
 
 type Props = {
   children: React.ReactNode;
@@ -24,6 +26,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale}>
+      <Suspense fallback={null}>
+        <NavigationProgress />
+      </Suspense>
       {children}
       <ModalRenderer />
     </NextIntlClientProvider>

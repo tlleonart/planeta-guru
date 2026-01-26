@@ -95,7 +95,7 @@ export const ShareModal: FC<ShareModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full md:w-fit sm:max-w-lg border-none p-5 md:p-10 text-black rounded-none">
+      <DialogContent className="w-full md:w-fit sm:max-w-lg border-none p-5 md:p-10 text-foreground rounded-none">
         <DialogHeader className="w-full flex flex-col text-center p-4">
           <DialogTitle className="w-full text-center text-xl">
             {t("title")}

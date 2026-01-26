@@ -25,8 +25,8 @@ export const CategoryCarousel: FC<CategoryCarouselProps> = async ({
 
   return (
     <Section className="group py-4">
-      <div className="flex flex-row items-center gap-5">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-0 md:mb-4 pl-4 md:pl-10">
+      <div className="flex flex-row items-center gap-5 mb-2 md:mb-4 pl-4 md:pl-10">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">
           {label ? t("title") : categoryName}
         </h2>
         <CategoryCarouselWatchMore categoryId={categoryId} />

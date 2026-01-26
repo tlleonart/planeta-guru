@@ -33,7 +33,7 @@ export const GameHTMLPage: FC<GameHTMLPageProps> = ({
   return (
     <main>
       {/* Sección 1: Banner con Card overlay */}
-      <section className="h-full md:h-screen pt-16 md:pt-6">
+      <section className="h-full md:h-screen">
         <GameHTMLContainer product={product} variant="banner">
           <GameHTMLCard
             name={product.name}

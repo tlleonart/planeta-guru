@@ -2,8 +2,9 @@
 
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
-import { headers } from "next/headers";
+import { cookies } from "next/headers";
 import z from "zod";
+import { getHttpClient } from "@/modules/http";
 
 export const vodacomWebSubscribeAction = async () => {
   try {
@@ -146,15 +147,15 @@ interface GetPaymentResponse {
  * - Inyecta headers automáticamente (auth, country, language, platform)
  */
 export const gurusPaymentAction = async (paymentMethod: PaymentMethod) => {
-  const headersList = await headers();
+  const cookieStore = await cookies();
   const { userId, getToken } = await auth();
 
   if (!userId) {
     throw new Error("Authentication required for payment");
   }
 
-  const selectedCountry = headersList.get("selected-country") || "ar";
-  const selectedLanguage = headersList.get("selected-language") || "es";
+  const selectedCountry = cookieStore.get("selectedCountry")?.value || "AR";
+  const selectedLanguage = cookieStore.get("selectedLanguage")?.value || "es";
 
   const authToken = await getToken();
 
@@ -192,15 +193,15 @@ export interface ComboPaymentMethod {
  * - Inyecta headers automaticamente (auth, country, language, platform)
  */
 export const comboPaymentAction = async (paymentMethod: ComboPaymentMethod) => {
-  const headersList = await headers();
+  const cookieStore = await cookies();
   const { userId, getToken } = await auth();
 
   if (!userId) {
     throw new Error("Authentication required for payment");
   }
 
-  const selectedCountry = headersList.get("selected-country") || "ar";
-  const selectedLanguage = headersList.get("selected-language") || "es";
+  const selectedCountry = cookieStore.get("selectedCountry")?.value || "AR";
+  const selectedLanguage = cookieStore.get("selectedLanguage")?.value || "es";
 
   const authToken = await getToken();
 
@@ -246,39 +247,54 @@ export const storeOutcomeAction = async (
   bundleId: number,
   walletId: number,
 ): Promise<Outcome> => {
-  const headersList = await headers();
+  const cookieStore = await cookies();
   const { userId, getToken } = await auth();
 
   if (!userId) {
     throw new Error("Authentication required for purchase");
   }
 
-  const selectedCountry = headersList.get("selected-country") || "ar";
-  const selectedLanguage = headersList.get("selected-language") || "es";
+  const selectedCountry = cookieStore.get("selectedCountry")?.value || "AR";
+  const selectedLanguage = cookieStore.get("selectedLanguage")?.value || "es";
 
   const authToken = await getToken();
 
-  const requestHeaders: Record<string, string> = {
-    "Content-Type": "application/json",
-    "Selected-Country": selectedCountry,
-    "Selected-Language": selectedLanguage,
-    "Platform-Key": process.env.PLATFORM_KEY || "",
-  };
-
-  if (authToken) {
-    requestHeaders.Authorization = `Bearer ${authToken}`;
+  if (!authToken) {
+    throw new Error("Failed to get authentication token");
   }
 
-  const response = await axios.post<OutcomeResponse>(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/wallets/outcome/store`,
-    {
-      bundle_id: bundleId,
-      wallet_id: walletId,
-    },
-    { headers: requestHeaders },
-  );
+  console.log("[storeOutcomeAction] Making request with:", {
+    bundleId,
+    walletId,
+    selectedCountry,
+    selectedLanguage,
+    hasToken: !!authToken,
+    tokenPreview: authToken ? authToken.substring(0, 20) + "..." : "none",
+  });
 
-  return response.data.outcome;
+  const httpClient = getHttpClient();
+
+  try {
+    const response = await httpClient.post<OutcomeResponse>(
+      "wallets/outcome/store",
+      {
+        bundle_id: bundleId,
+        wallet_id: walletId,
+      },
+      {
+        context: {
+          selectedCountry,
+          selectedLanguage,
+          authToken,
+        },
+      },
+    );
+
+    return response.data.outcome;
+  } catch (error) {
+    console.error("[storeOutcomeAction] Error:", error);
+    throw error;
+  }
 };
 
 /**
@@ -290,15 +306,15 @@ export const externalProviderPurchaseAction = async (
   bundleId: number,
   sopId: number | null = null,
 ) => {
-  const headersList = await headers();
+  const cookieStore = await cookies();
   const { userId, getToken } = await auth();
 
   if (!userId) {
     throw new Error("Authentication required for purchase");
   }
 
-  const selectedCountry = headersList.get("selected-country") || "ar";
-  const selectedLanguage = headersList.get("selected-language") || "es";
+  const selectedCountry = cookieStore.get("selectedCountry")?.value || "AR";
+  const selectedLanguage = cookieStore.get("selectedLanguage")?.value || "es";
 
   const authToken = await getToken();
 

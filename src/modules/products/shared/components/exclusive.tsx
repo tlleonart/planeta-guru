@@ -31,14 +31,19 @@ export const Exclusive: FC<ExclusiveProps> = async ({
     bundle.availableIntoSelectedCountry?.available ?? false;
   const country: string | null =
     bundle.availableIntoSelectedCountry?.country ?? null;
+  const countriesCount = countries?.length ?? 0;
   let text = "";
 
   if (!country) {
     text = t("country_not_found");
+  } else if (available) {
+    // Use "available_single" when only 1 country, "available" when multiple
+    text =
+      countriesCount <= 1
+        ? t("available_single", { country })
+        : t("available", { country });
   } else {
-    text = available
-      ? t("available", { country })
-      : t("text_not_available", { country });
+    text = t("text_not_available", { country });
   }
 
   // No mostrar para región global (id: 1)

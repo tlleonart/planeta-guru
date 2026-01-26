@@ -67,7 +67,11 @@ export const PaymentMethods: FC<PaymentMethodsProps> = ({
         const href = `/charge-gurus/payments/${pack}/${id}/${price}/${transactionCost}/${totalPrice}/${method.id}?${queryParams.toString()}`;
 
         return (
-          <Link key={method.id} href={href}>
+          <Link
+            key={method.id}
+            href={href}
+            data-testid={`payment-method-${method.id}`}
+          >
             <div className="flex p-10 justify-center md:min-w-64 items-center align-middle h-20 bg-white/20 cursor-pointer gap-4 transition-all duration-300 hover:bg-white/10">
               {method.icon}
               {method.title}

@@ -63,7 +63,7 @@ export const BundlesCard: FC<BundlesCardProps> = ({
       <button
         type="button"
         onClick={handleClick}
-        className="flex items-center justify-between gap-6 hover:scale-105 duration-100 ease-in-out transition-all cursor-pointer h-full py-2 md:py-4 px-2 md:px-6 shadow-md text-white flex-grow bg-slate-200/20 backdrop-blur-sm"
+        className="flex items-center justify-between gap-6 hover:scale-105 duration-100 ease-in-out transition-all cursor-pointer h-full py-2 md:py-4 px-4 md:px-6 shadow-md text-white flex-grow bg-slate-200/20 backdrop-blur-sm rounded-none"
       >
         <h3 className="text-center text-sm md:text-base">{title}</h3>
         <div className="flex items-center py-1 px-2">

@@ -55,7 +55,9 @@ export const SubscriptionPage: FC<SubscriptionPageProps> = ({
             favoriteId={product.favoriteId}
             bundlesLength={product.bundles.length}
             bundleName={product.bundles[0]?.title}
+            bundleId={product.bundles[0]?.id || 0}
             walletAmount={walletAmount}
+            walletId={walletId}
           />
         </SubscriptionContainer>
       </section>

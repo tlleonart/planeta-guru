@@ -56,15 +56,39 @@ export async function POST(request: Request) {
       requestHeaders.Authorization = `Bearer ${authToken}`;
     }
 
+    console.log("[Payment API] Request:", {
+      url: `${process.env.NEXT_PUBLIC_BASE_API_URL}/payments/transactions`,
+      body,
+      headers: {
+        ...requestHeaders,
+        Authorization: authToken ? "Bearer [REDACTED]" : undefined,
+      },
+    });
+
     const response = await axios.post<GetPaymentResponse>(
       `${process.env.NEXT_PUBLIC_BASE_API_URL}/payments/transactions`,
       body,
       { headers: requestHeaders },
     );
 
+    console.log("[Payment API] Success:", response.data);
     return NextResponse.json(response.data.transaction);
   } catch (error) {
-    console.error("Payment API error:", error);
+    if (axios.isAxiosError(error)) {
+      console.error("[Payment API] Error response:", {
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message,
+      });
+      return NextResponse.json(
+        {
+          error: error.response?.data?.message || "Error processing payment",
+          details: error.response?.data,
+        },
+        { status: error.response?.status || 500 },
+      );
+    }
+    console.error("[Payment API] Unknown error:", error);
     return NextResponse.json(
       { error: "Error processing payment" },
       { status: 500 },

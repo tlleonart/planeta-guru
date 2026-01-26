@@ -105,7 +105,7 @@ const BuyBundleModal: FC<BuyBundleModalProps> = ({
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="p-4 bg-gray-100">
+          <div className="p-4 bg-gray-100 rounded">
             <table className="w-full">
               <tbody>
                 {tableItems.map((item, index) => (
@@ -115,7 +115,7 @@ const BuyBundleModal: FC<BuyBundleModalProps> = ({
                     </td>
                     <td
                       className={cn(
-                        "text-sm sm:text-base font-semibold",
+                        "text-sm sm:text-base font-semibold text-gray-900",
                         index === tableItems.length - 1 &&
                           item.value >= 0 &&
                           "text-green-600",

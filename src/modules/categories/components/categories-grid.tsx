@@ -18,12 +18,12 @@ export const CategoriesGrid: FC<CategoriesGridProps> = ({ categories }) => {
 
   return (
     <div className="flex flex-col justify-start w-full gap-6">
-      <div className="grid grid-cols-2 lg:grid lg:grid-cols-4 gap-x-1 md:gap-x-2 gap-y-6 md:gap-y-16   mb-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-6">
         {mainCategories?.map((category) => (
           <CategoriesMainCategoryCard key={category.id} category={category} />
         ))}
       </div>
-      <div className="flex flex-wrap  gap-x-3  md:gap-x-4 gap-y-3 md:gap-y-6   mb-6">
+      <div className="flex flex-wrap justify-start gap-3 md:gap-4 mb-6">
         {secondaryCategories?.map((category) => (
           <CategoriesSecCategoryCard key={category.id} category={category} />
         ))}
